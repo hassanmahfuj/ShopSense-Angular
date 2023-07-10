@@ -1,0 +1,50 @@
+<header>
+    <div class="topbar d-flex align-items-center ">
+        <nav class="navbar navbar-expand gap-3">
+            <h1 class="fs-2 m-0">ShopSense</h1>
+            <div class="user-box dropdown px-3 ms-auto">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                    <div class="user-info">
+                        <p class="user-name mb-0">Pauline Seitz</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="page-wrapper">
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="assets/images/avatars/avatar-2.png" alt="Admin"
+                                    class="rounded-circle p-1 bg-primary" width="110">
+                                <h4 class="mt-3">John Doe</h4>
+                            </div>
+                            <div class="btn-group-vertical w-100 mt-3">
+                                <button type="button" class="btn btn-outline-secondary btn-lg"
+                                    routerLink=".">Profile</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg"
+                                    routerLink="wishlist">Wishlist</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg"
+                                    routerLink="orders">Orders</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg"
+                                    routerLink="addresses">Addressess</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg"
+                                    routerLink="payment">Payment Methods</button>
+                                <button type="button" class="btn btn-outline-danger btn-lg">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
