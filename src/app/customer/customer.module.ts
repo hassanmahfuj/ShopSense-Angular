@@ -7,6 +7,8 @@ import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { AddressesComponent } from './addresses/addresses.component';
   ],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class CustomerModule { }

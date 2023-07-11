@@ -29,7 +29,7 @@
             </a>
         </li>
         <li>
-            <a routerLink=".">
+            <a routerLink="product">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
                 <div class="menu-title">Add Products</div>
@@ -51,8 +51,8 @@
                 <div class="menu-title">Store Info</div>
             </a>
         </li>
-        <li>
-            <a routerLink=".">
+        <li (click)="onSellerLogout()">
+            <a class="cursor-pointer">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
                 <div class="menu-title">Logout</div>
@@ -132,7 +132,7 @@
                 <a class="d-flex align-items-center gap-3" routerLink=".">
                     <img src="assets/images/avatars/avatar-4.png" class="user-img" alt="user avatar">
                     <div class="user-info">
-                        <p class="user-name mb-0">Pauline Seitz</p>
+                        <p class="user-name mb-0">{{sellerName}}</p>
                         <p class="designattion mb-0">SELLER</p>
                     </div>
                 </a>

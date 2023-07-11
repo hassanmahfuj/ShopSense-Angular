@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SellerService } from '../services/seller.service';
 
 @Component({
   selector: 'app-seller',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class SellerComponent {
 
+  sellerName: string = '';
+
+  constructor(private router: Router, private sellerService: SellerService) {
+    this.sellerName = sellerService.getSeller().name;
+  }
+
+  onSellerLogout(): void {
+    localStorage.removeItem('seller-token');
+    this.router.navigate(['seller/auth']);
+  }
 }

@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/interfaces/product';
+import { SellerService } from 'src/app/services/seller.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
+  products: Product[] = [];
+
+  constructor(private sellerService: SellerService) { }
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.sellerService.getProducts().subscribe((response) => {
+      this.products = response;
+    });
+  }
+
+  onDelete(id: number) {
+    let bool = confirm("Are you sure to delete?");
+    if (bool) {
+      this.sellerService.deleteProduct(id).subscribe((response) => {
+        this.getProducts();
+        console.log(response);
+      });
+    }
+  }
 
 }

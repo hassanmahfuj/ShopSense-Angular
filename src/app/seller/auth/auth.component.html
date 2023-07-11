@@ -4,10 +4,10 @@
             <div class="d-flex align-items-center px-5 py-2">
                 <h1 class="fw-bold fs-4 m-0">ShopSense Seller</h1>
                 <div class="ms-auto">
-                    <form>
+                    <form #_form="ngForm" (submit)="onSellerLogin(_form.value)">
                         <div class="d-flex gap-2">
-                            <input class="form-control" type="email" id="email1" name="email1" placeholder="Email">
-                            <input class="form-control" type="password" id="password1" name="password1" placeholder="Password">
+                            <input class="form-control" type="email" id="email1" name="email" placeholder="Email" ngModel>
+                            <input class="form-control" type="password" id="password1" name="password" ngModel placeholder="Password">
                             <button class="btn btn-primary" type="submit">Login</button>
                         </div>
                     </form>
@@ -19,7 +19,7 @@
                 <div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0">
                     <div class="card-body">
                         <img src="./assets/images/login-images/register-cover.svg" class="img-fluid auth-img-cover-login"
-                            width="450" alt="" />
+                            width="450" />
                     </div>
                 </div>
             </div>

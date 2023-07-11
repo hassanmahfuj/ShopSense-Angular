@@ -7,7 +7,7 @@
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="javascript:;" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i
+                <div class="ms-auto"><a routerLink="../product" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i
                             class="bx bxs-plus-square"></i>Add New Product</a></div>
             </div>
             <div class="table-responsive">
@@ -17,66 +17,32 @@
                             <th>Id#</th>
                             <th>Product Name</th>
                             <th>Status</th>
-                            <th>Price</th>
+                            <th>Regular Price</th>
+                            <th>Sale Price</th>
                             <th>View Details</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let p of products">
                             <td>
-                                <h6 class="mb-0 font-14">#OS-354</h6>
+                                <h6 class="mb-0 font-14">#{{p.id}}</h6>
                             </td>
-                            <td>Gaspur Antunes</td>
+                            <td>{{p.title}}</td>
                             <td>
-                                <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i
-                                        class='bx bxs-circle me-1'></i>Published</div>
-                            </td>
-                            <td>$485.20</td>
-                            <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View
-                                    Details</button></td>
-                            <td>
-                                <div class="d-flex order-actions">
-                                    <a href="javascript:;" class=""><i class='bx bxs-edit'></i></a>
-                                    <a href="javascript:;" class="ms-3"><i class='bx bxs-trash'></i></a>
+                                <div [class]="p.status=='Rejected' ? 'text-danger bg-light-danger' : p.status=='Pending' ? 'text-warning bg-light-warning' : 'text-success bg-light-success'"
+                                    class="badge rounded-pill p-2 text-uppercase px-3">
+                                    <i class='bx bxs-circle me-1'></i>{{p.status}}
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h6 class="mb-0 font-14">#OS-689</h6>
-                            </td>
-                            <td>Gaspur Antunes</td>
-                            <td>
-                                <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i
-                                        class='bx bxs-circle align-middle me-1'></i>Pending</div>
-                            </td>
-                            <td>$876.60</td>
+                            <td>{{p.regularPrice}}</td>
+                            <td>{{p.salePrice}}</td>
                             <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View
                                     Details</button></td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    <a href="javascript:;" class=""><i class='bx bxs-edit'></i></a>
-                                    <a href="javascript:;" class="ms-3"><i class='bx bxs-trash'></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h6 class="mb-0 font-14">#OS-689</h6>
-                            </td>
-                            <td>Gaspur Antunes</td>
-                            <td>
-                                <div class="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i
-                                        class='bx bxs-circle align-middle me-1'></i>Rejected</div>
-                            </td>
-                            <td>$876.60</td>
-                            <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View
-                                    Details</button></td>
-                            <td>
-                                <div class="d-flex order-actions">
-                                    <a href="javascript:;" class=""><i class='bx bxs-edit'></i></a>
-                                    <a href="javascript:;" class="ms-3"><i class='bx bxs-trash'></i></a>
+                                    <a routerLink="../product/{{p.id}}" class=""><i class='bx bxs-edit'></i></a>
+                                    <a (click)="onDelete(p.id)" class="ms-3 cursor-pointer"><i class='bx bxs-trash'></i></a>
                                 </div>
                             </td>
                         </tr>

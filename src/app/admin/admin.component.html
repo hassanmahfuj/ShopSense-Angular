@@ -60,8 +60,8 @@
             </a>
         </li>
         <li class="menu-label">Account</li>
-        <li>
-            <a routerLink=".">
+        <li (click)="onAdminLogout()">
+            <a class="cursor-pointer">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
                 <div class="menu-title">Logout</div>
@@ -141,7 +141,7 @@
                 <a class="d-flex align-items-center gap-3" routerLink=".">
                     <img src="assets/images/avatars/avatar-8.png" class="user-img" alt="user avatar">
                     <div class="user-info">
-                        <p class="user-name mb-0">Pauline Seitz</p>
+                        <p class="user-name mb-0">{{adminName}}</p>
                         <p class="designattion mb-0">ADMIN</p>
                     </div>
                 </a>

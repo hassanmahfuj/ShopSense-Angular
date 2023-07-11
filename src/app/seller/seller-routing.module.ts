@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
     children: [
       { path: "", component: DashboardComponent },
       { path: "products", component: ProductsComponent },
-      { path: "products/add", component: ProductAddComponent }
+      { path: "product", component: ProductAddComponent },
+      { path: "product/:id", component: ProductEditComponent }
     ]
   },
   { path: "auth", component: AuthComponent }
