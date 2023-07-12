@@ -43,6 +43,42 @@
             <svg class="svg-style" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M19.0765 9.48063H12.1242L15.5905 0L5 14.5194H11.9522L8.48592 24L19.0765 9.48063Z"></path>
             </svg>
+            <h2 class="fw-bold fs-3 m-0">Recommended</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
+            <div *ngFor="let p of products" class="col cursor-pointer" (click)="showProduct(p.id)">
+                <div class="card">
+                    <img src="assets/images/products/{{p.thumbnailUrl}}" class="card-img-top" alt="...">
+                    <div class="">
+                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">{{getDiscountPercentage(p)}}</span></div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title cursor-pointer">{{p.title}}</h6>
+                        <div class="clearfix">
+                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
+                            <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary">${{p.regularPrice}}</span><span>${{p.salePrice}}</span></p>
+                        </div>
+                        <div class="d-flex align-items-center mt-3 fs-6">
+                          <div class="cursor-pointer">
+                            <i class='bx bxs-star text-warning'></i>
+                            <i class='bx bxs-star text-warning'></i>
+                            <i class='bx bxs-star text-warning'></i>
+                            <i class='bx bxs-star text-warning'></i>
+                            <i class='bx bxs-star text-secondary'></i>
+                          </div>	
+                          <p class="mb-0 ms-auto">4.2(182)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="d-flex align-items-center gap-1 mb-4">
+            <svg class="svg-style" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M19.0765 9.48063H12.1242L15.5905 0L5 14.5194H11.9522L8.48592 24L19.0765 9.48063Z"></path>
+            </svg>
             <h2 class="fw-bold fs-3 m-0">Flash Deals</h2>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">

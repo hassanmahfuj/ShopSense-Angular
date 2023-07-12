@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Customer } from '../interfaces/customer';
 import { Observable } from 'rxjs';
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,13 @@ export class CustomerService {
 
   getCustomer(): Customer {
     return JSON.parse(localStorage.getItem('customer-token') || '{}');
+  }
+
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(this.baseUrl.concat('/product/') + id);
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl.concat('/products'));
   }
 }

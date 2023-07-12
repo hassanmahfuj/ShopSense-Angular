@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home.component';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HomeComponent } from './home.component';
     HomeComponent,
     HeaderComponent,
     ContentComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,

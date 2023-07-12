@@ -9,7 +9,7 @@ import { SellerModule } from './seller/seller.module';
 import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
-  { path: "", loadChildren: () => HomeModule},
+  { path: "", loadChildren: () => HomeModule },
   { path: 'customer', loadChildren: () => CustomerModule },
   { path: 'seller', loadChildren: () => SellerModule },
   { path: 'admin', loadChildren: () => AdminModule },
@@ -17,7 +17,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    { scrollPositionRestoration: 'enabled' }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

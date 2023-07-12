@@ -1,7 +1,7 @@
 <header>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand gap-3">
-            <h1 class="fs-2 m-0">ShopSense</h1>
+            <a routerLink=""><h1 class="fs-2 m-0">ShopSense</h1></a>
             <div class="position-relative search-bar">
                 <input class="form-control ps-5" type="search" placeholder="Search">
                 <span class="position-absolute top-50 search-show ms-3 translate-middle-y start-0 top-50 fs-5"><i
@@ -202,9 +202,9 @@
             </div>
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center gap-3" routerLink="customer">
-                    <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                    <img src="assets/images/avatars/avatar-1.png" class="user-img" alt="user avatar">
                     <div class="user-info">
-                        <p class="user-name mb-0">Pauline Seitz</p>
+                        <p class="user-name mb-0">{{customerName}}</p>
                         <p class="designattion mb-0">CUSTOMER</p>
                     </div>
                 </a>
