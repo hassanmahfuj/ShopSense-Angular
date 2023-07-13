@@ -1,11 +1,15 @@
 <header>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand gap-3">
-            <a routerLink=""><h1 class="fs-2 m-0">ShopSense</h1></a>
+            <a routerLink="">
+                <h1 class="fs-2 m-0">ShopSense</h1>
+            </a>
             <div class="position-relative search-bar">
-                <input class="form-control ps-5" type="search" placeholder="Search">
-                <span class="position-absolute top-50 search-show ms-3 translate-middle-y start-0 top-50 fs-5"><i
-                        class='bx bx-search'></i></span>
+                <form (submit)="search()">
+                    <input class="form-control ps-5" type="search" placeholder="Search" name="searchQuery" [(ngModel)]="searchQuery">
+                    <span class="position-absolute top-50 search-show ms-3 translate-middle-y start-0 top-50 fs-5"><i
+                            class='bx bx-search'></i></span>
+                </form>
             </div>
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center gap-1">
@@ -187,7 +191,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <a href="javascript:;">
+                            <a routerLink="checkout">
                                 <div class="text-center msg-footer">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                         <h5 class="mb-0">Total</h5>

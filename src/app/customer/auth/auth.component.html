@@ -19,7 +19,7 @@
                                 <p class="mb-0">Please log in to your account</p>
                             </div>
                             <div class="form-body">
-                                <form #_form="ngForm" (submit)="onCustomerLogin(_form.value)" class="row g-3">
+                                <form #_form1="ngForm" (submit)="onCustomerLogin(_form1.value)" class="row g-3">
                                     <div class="col-12">
                                         <label for="inputEmailAddress" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmailAddress"
@@ -104,26 +104,31 @@
                                 <p class="mb-0">Please fill the below details to create your account</p>
                             </div>
                             <div class="form-body">
-                                <form class="row g-3">
+                                <form #_form2="ngForm" (submit)="onCustomerSignup(_form2.value)" class="row g-3">
                                     <div class="col-12">
-                                        <label for="inputUsername" class="form-label">Username</label>
-                                        <input type="email" class="form-control" id="inputUsername" placeholder="Jhon">
+                                        <label for="inputUsername" class="form-label">Full Name</label>
+                                        <input type="email" class="form-control" id="inputUsername" placeholder="Enter your name" name="name" ngModel>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputEmailAddress" class="form-label">Email Address</label>
+                                        <label for="inputEmailAddress" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmailAddress"
-                                            placeholder="example@user.com">
+                                            placeholder="example@user.com" name="email" ngModel>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputChoosePassword" class="form-label">Password</label>
                                         <div class="input-group" id="show_hide_password">
                                             <input type="password" class="form-control border-end-0"
-                                                id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                                                id="inputChoosePassword" placeholder="Enter Password" name="password" ngModel>
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class='bx bx-hide'></i></a>
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress"
+                                            name="address" ngModel>
+                                    </div>
+                                    <!-- <div class="col-12">
                                         <label for="inputSelectCountry" class="form-label">Country</label>
                                         <select class="form-select" id="inputSelectCountry"
                                             aria-label="Default select example">
@@ -132,7 +137,7 @@
                                             <option value="2">America</option>
                                             <option value="3">Dubai</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">

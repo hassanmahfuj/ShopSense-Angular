@@ -25,6 +25,24 @@ export class AuthComponent {
         if (customer != null) {
           localStorage.setItem('customer-token', JSON.stringify(customer));
           this.router.navigate(['customer']);
+          alert("Signin Complete");
+        } else {
+          alert("Something went wrong");
+        }
+      }
+    )
+  }
+
+  onCustomerSignup(customer: Customer): void {
+    customer.role = "CUSTOMER";
+    this.customerService.customerSignup(customer).subscribe(
+      (customer: Customer) => {
+        if (customer != null) {
+          localStorage.setItem('customer-token', JSON.stringify(customer));
+          this.router.navigate(['customer']);
+          alert("Signup Complete");
+        } else {
+          alert("Something went wrong");
         }
       }
     )

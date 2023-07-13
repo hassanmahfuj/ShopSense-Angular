@@ -7,6 +7,10 @@ import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home.component';
 import { ProductComponent } from './product/product.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CartComponent } from './cart/cart.component';
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +19,15 @@ import { ProductComponent } from './product/product.component';
     HeaderComponent,
     ContentComponent,
     FooterComponent,
-    ProductComponent
+    ProductComponent,
+    CheckoutComponent,
+    CartComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

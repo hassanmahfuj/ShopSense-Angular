@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -6,9 +6,19 @@ import { CustomerService } from 'src/app/services/customer.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
-  constructor(private customerService: CustomerService) {
-    
+  name: any;
+  email: any;
+  address: any;
+
+  constructor(private customerService: CustomerService) { }
+
+  ngOnInit(): void {
+    this.name = this.customerService.getCustomer().name;
+    this.email = this.customerService.getCustomer().email;
+    this.address = this.customerService.getCustomer().address;
   }
+
+
 }
