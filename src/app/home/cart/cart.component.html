@@ -1,1 +1,75 @@
-<p>cart works!</p>
+<div class="page-content">
+    <div class="page-wrapper">
+        <section class="cart-page pt-125 pb-125">
+            <div class="container">
+                <h3 class="from-title">Cart</h3>
+                <div class="cart-total-product">
+                    <div class="total-cart-price">
+                        <h5>Total Items: {{cartItems.length}}</h5>
+                        <h5>Cart Total: ৳{{cartTotal}}</h5>
+                    </div>
+                    <div class="cart-item-wrap">
+                        <div *ngFor="let item of cartItems" class="alert fade show cart-single-item">
+                            <h6 class="product-name">{{item.productName}}</h6>
+                            <span class="product-price">৳{{item.productUnitPrice.toFixed(2)}}</span>
+                            <div class="quantity-input" style="width: 130px;">
+                                <div class="input-group input-spinner">
+                                    <button (click)="quantityChange(false, item)" class="btn btn-white" type="button" id="button-plus"> + </button>
+                                    <input disabled type="text" class="form-control text-center" value="{{item.productQuantity}}">
+                                    <button (click)="quantityChange(true, item)" class="btn btn-white" type="button" id="button-minus"> − </button>
+                                </div>
+                            </div>
+                            <span class="avilable"><i class="far fa-check"></i>In Stock</span>
+                            <span class="product-total-price">৳{{item.subTotal.toFixed(2)}}</span>
+                            <button type="button" class="close" data-bs-dismiss="alert"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <!-- <div class="alert fade show cart-single-item">
+                            <h6 class="product-name">Red Alaskan King Sea Crab</h6>
+                            <span class="product-price">$120</span>
+                            <div class="quantity-input">
+                                <input type="number" min="1" max="10" value="1">
+                            </div>
+                            <span class="avilable"><i class="far fa-check"></i> In Stock</span>
+                            <span class="product-total-price">$360</span>
+                            <button type="button" class="close" data-bs-dismiss="alert"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="alert fade show cart-single-item">
+                            <h6 class="product-name">Pizza With Seafood Italian Foods</h6>
+                            <span class="product-price">$10</span>
+                            <div class="quantity-input">
+                                <input type="number" min="1" max="10" value="1">
+                            </div>
+                            <span class="avilable"><i class="far fa-check"></i> In Stock</span>
+                            <span class="product-total-price">$20</span>
+                            <button type="button" class="close" data-bs-dismiss="alert"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="alert fade show cart-single-item">
+                            <h6 class="product-name">Footlong Submarine Sandwich</h6>
+                            <span class="product-price">$20</span>
+                            <div class="quantity-input">
+                                <input type="number" min="1" max="10" value="1">
+                            </div>
+                            <span class="avilable"><i class="far fa-check"></i> In Stock</span>
+                            <span class="product-total-price">$60</span>
+                            <button type="button" class="close" data-bs-dismiss="alert"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="cart-total-price mt-4">
+                    <div class="row justify-content-end text-center text-lg-left">
+                        <div class="col-lg-6">
+                            <div class="update-shopping text-lg-end">
+                                <a routerLink="../checkout" class="main-btn btn-red mt-10">checkout<i
+                                        class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

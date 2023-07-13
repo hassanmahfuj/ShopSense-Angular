@@ -38,6 +38,16 @@ export class CustomerService {
     return this.http.post<CartItem>(this.baseUrl.concat('/cart'), cartItem);
   }
 
+  updateCart(cartItem: CartItem): Observable<boolean> {
+    return this.http.put<boolean>(this.baseUrl.concat('/cart'), cartItem);
+  }
+
+  removeFromCart(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl.concat('/cart'), {
+      params: { "id": id }
+    });
+  }
+
   getCartItems(): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(this.baseUrl.concat('/cart'), {
       params: { "id": this.getCustomer().id }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { CustomerModule } from './customer/customer.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     AppRoutingModule,
     HomeModule,
-    CustomerModule
+    CustomerModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

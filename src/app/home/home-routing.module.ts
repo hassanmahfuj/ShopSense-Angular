@@ -5,14 +5,15 @@ import { ProductComponent } from './product/product.component';
 import { ContentComponent } from './content/content.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchComponent } from './search/search.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
     path: "", component: HomeComponent, children: [
       { path: "", component: ContentComponent },
       { path: "search", component: SearchComponent },
-      // { path: "search/:query", component: SearchComponent },
       { path: "product/:id", component: ProductComponent },
+      { path: "cart", component: CartComponent },
       { path: "checkout", component: CheckoutComponent }
     ]
   }

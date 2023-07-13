@@ -1,1 +1,122 @@
-<p>checkout works!</p>
+<div class="page-content">
+    <div class="page-wrapper">
+        <section class="checkout-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form>
+                            <h3 class="from-title">Order Conformation</h3>
+                            <hr>
+                            <div class="row mt-3 g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="full-name" name="full-name" class="form-control"
+                                            placeholder="Full Name" [(ngModel)]="customerName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" id="emailAddress" name="email" class="form-control"
+                                            placeholder="Email Address" [(ngModel)]="customerEmail">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h5 class="mt-2">Shipping Address</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select #_div class="form-select" name="state" id="state"
+                                            (change)="onDivisionSelect(_div.value)">
+                                            <option *ngFor="let div of divisions" value="{{div.id}}">{{div.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select #_dis class="form-select" name="city" id="city"
+                                            (change)="onDistrictSelect(_dis.value)">
+                                            <option value=""></option>
+                                            <option *ngFor="let dis of selectedDistricts" value="{{dis.id}}">
+                                                {{dis.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="zip" name="zip" class="form-control" value=""
+                                            placeholder="Post Code" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="street-name" name="street-name" class="form-control"
+                                            value="" placeholder="House, street name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h5 class="mt-3">Order Notes (optional)</h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="order-note" id="order-note" class="form-control" rows="5"
+                                            placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <form id="payment-method" name="payment-method" class="checkout-form mb-30" action="#"
+                            method="POST">
+                            <h3 class="from-title mb-25">Order Summary</h3>
+                            <hr>
+                            <div class="package-summary mt-35 mb-25">
+                                <table>
+                                    <tbody>
+                                        <tr *ngFor="let item of cartItems">
+                                            <td>{{item.productName}} <strong>× {{item.productQuantity}}</strong></td>
+                                            <td>৳{{item.subTotal.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping Charge</td>
+                                            <td>৳{{shippingCharge.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr *ngIf="gatewayFee > 0">
+                                            <td>Gateway Fee - {{gatewayFeeReason}}</td>
+                                            <td>৳{{gatewayFee.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr *ngIf="discount > 0">
+                                            <td>Discount - {{discountReason}}</td>
+                                            <td>৳{{discount.toFixed(2)}}</td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>Vat</td>
+                                            <td>৳0.00</td>
+                                        </tr> -->
+                                        <tr>
+                                            <td><strong>Order Total</strong></td>
+                                            <td><strong>৳{{orderTotal.toFixed(2)}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input class="form_control" type="text" placeholder="Coupon Code">
+                            <h5 class="title mt-2 mb-2">Payment Method</h5>
+                            <div class="form-group">
+                                <select #_payment class="form-select" name="payment" id="payment"
+                                    (change)="paymentMethod(_payment.value)">
+                                    <option value="default">Choose an Option</option>
+                                    <option value="payment1">Cash on Delivery</option>
+                                    <option value="payment2">Card</option>
+                                    <option value="payment3">bKash</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2 w-100">Proceed to Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

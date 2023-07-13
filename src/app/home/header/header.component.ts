@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartItem } from 'src/app/interfaces/cart-item';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -11,6 +12,9 @@ export class HeaderComponent implements OnInit {
 
   customerName: string = '';
   searchQuery: string = '';
+
+  cartItems: CartItem[] = [];
+  cartTotal: number = 0;
 
   constructor(private customerService: CustomerService, private router: Router) {
     this.customerName = customerService.getCustomer().name;
@@ -26,7 +30,11 @@ export class HeaderComponent implements OnInit {
 
   getCartItems() {
     this.customerService.getCartItems().subscribe((response) => {
-      console.log(response);
+      this.cartItems = response;
+      this.cartTotal = 0;
+      for (let item of this.cartItems) {
+        this.cartTotal += item.subTotal;
+      }
     });
   }
 }

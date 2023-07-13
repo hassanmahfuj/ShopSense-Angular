@@ -17,36 +17,36 @@
                     <li class="nav-item dropdown dropdown-large">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span
-                                class="alert-count">8</span>
+                                class="alert-count">{{cartItems.length}}</span>
                             <i class='bx bx-shopping-bag'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">My Cart</p>
-                                    <p class="msg-header-badge">10 Items</p>
+                                    <p class="msg-header-badge">{{cartItems.length}} Items</p>
                                 </div>
                             </a>
                             <div class="header-message-list">
-                                <a class="dropdown-item" href="javascript:;">
+                                <div *ngFor="let item of cartItems" class="dropdown-item">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="position-relative">
                                             <div class="cart-product rounded-circle bg-light">
-                                                <img src="assets/images/products/11.png" class="" alt="product image">
+                                                <img src="assets/images/products/{{item.productThumbnailUrl}}" class="" alt="product image">
                                             </div>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="cart-product-title mb-0">Men White T-Shirt</h6>
-                                            <p class="cart-product-price mb-0">1 X $29.00</p>
+                                            <h6 class="cart-product-title mb-0">{{item.productName}}</h6>
+                                            <p class="cart-product-price mb-0">{{item.productQuantity}} X ৳{{item.productUnitPrice}}</p>
                                         </div>
                                         <div class="">
-                                            <p class="cart-price mb-0">$250</p>
+                                            <p class="cart-price mb-0">৳{{item.subTotal.toFixed(2)}}</p>
                                         </div>
-                                        <div class="cart-product-cancel"><i class="bx bx-x"></i>
-                                        </div>
+                                        <!-- <div class="cart-product-cancel"><i class="bx bx-x"></i>
+                                        </div> -->
                                     </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
+                                </div>
+                                <!-- <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="position-relative">
                                             <div class="cart-product rounded-circle bg-light">
@@ -189,15 +189,15 @@
                                         <div class="cart-product-cancel"><i class="bx bx-x"></i>
                                         </div>
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
-                            <a routerLink="checkout">
+                            <a routerLink="cart">
                                 <div class="text-center msg-footer">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                         <h5 class="mb-0">Total</h5>
-                                        <h5 class="mb-0 ms-auto">$489.00</h5>
+                                        <h5 class="mb-0 ms-auto">৳{{cartTotal.toFixed(2)}}</h5>
                                     </div>
-                                    <button class="btn btn-primary w-100">Checkout</button>
+                                    <button class="btn btn-primary w-100">View Cart</button>
                                 </div>
                             </a>
                         </div>

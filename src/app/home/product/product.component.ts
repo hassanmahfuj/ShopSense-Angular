@@ -36,7 +36,8 @@ export class ProductComponent implements OnInit {
       productName: this.product.title,
       productThumbnailUrl: this.product.thumbnailUrl,
       productUnitPrice: this.product.salePrice,
-      productQuantity: this.quantity
+      productQuantity: this.quantity,
+      subTotal: this.product.salePrice * this.quantity
     };
     this.customerService.addToCart(cartItem).subscribe((response) => {
       console.log(response);

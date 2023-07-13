@@ -1,0 +1,166 @@
+.page-wrapper {
+    margin-left: 0;
+}
+
+
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+i,
+span,
+a {
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #0E1317;
+    margin: 0px;
+    font-family: "Forum", cursive;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 65px;
+    line-height: 1em;
+}
+
+h2 {
+    font-size: 48px;
+    line-height: 53px;
+}
+
+@media (max-width: 1199px) {
+    h2 {
+        font-size: 36px;
+        line-height: 45px;
+    }
+}
+
+h3 {
+    font-size: 35px;
+    line-height: 39px;
+}
+
+h4 {
+    font-size: 27px;
+    line-height: 1;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+ul,
+ol {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+p {
+    color: #666666;
+    margin: 0px;
+}
+
+input,
+textarea {
+    display: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+
+
+
+
+
+.form_group {
+    position: relative;
+}
+
+label {
+    margin-bottom: 0;
+}
+
+.form_control {
+    width: 100%;
+    padding: 0 30px;
+    height: 60px;
+    border: none;
+}
+
+textarea.form_control {
+    padding-top: 15px;
+    display: inherit;
+    height: 145px;
+}
+
+
+
+
+
+.package-summary table {
+    width: 100%;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.package-summary table tr:not(:last-child) {
+    border-bottom: 1px solid #EDEDED;
+}
+
+.package-summary table td {
+    padding: 10px 20px;
+}
+
+@media (max-width: 575px) {
+    .package-summary table td {
+        font-size: 16px;
+    }
+}
+
+.checkout-form .form_control {
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    padding: 10px 25px;
+    height: auto;
+}
+
+.checkout-form .nice-select:after {
+    right: 20px;
+}

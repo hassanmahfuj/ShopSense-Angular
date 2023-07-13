@@ -6,4 +6,5 @@ export interface CartItem {
     productThumbnailUrl: string;
     productUnitPrice: number;
     productQuantity: number;
+    subTotal: number;
 }
