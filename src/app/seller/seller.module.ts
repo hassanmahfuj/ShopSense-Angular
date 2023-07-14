@@ -10,6 +10,8 @@ import { ProductAddComponent } from './product-add/product-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     DashboardComponent,
     ProductsComponent,
     ProductAddComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -58,4 +58,16 @@ export class CustomerService {
   placeOrder(order: Order): Observable<Order> {
     return this.http.post<Order>(this.baseUrl.concat('/order'), order);
   }
+
+  getOrder(id: number): Observable<Order> {
+    return this.http.get<Order>(this.baseUrl.concat('/order'), {
+      params: { "id": id }
+    });
+  }
+
+  getOrders(id: number): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl.concat('/orders'), {
+      params: { "id": id }
+    });
+  }
 }

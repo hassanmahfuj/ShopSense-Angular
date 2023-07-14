@@ -11,6 +11,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     ProductComponent,
     CheckoutComponent,
     CartComponent,
-    SearchComponent
+    SearchComponent,
+    InvoiceComponent
   ],
   imports: [
     CommonModule,

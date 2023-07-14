@@ -122,7 +122,12 @@ export class CheckoutComponent {
       }
 
       this.customerService.placeOrder(order).subscribe((order) => {
-        this.util.toastify(true, "Order PLaced");
+        if(order != null) {
+          this.util.toastify(true, "Order PLaced");
+          this.router.navigate(['../invoice', order.id]);
+        } else {
+          this.util.toastify(false);
+        }
       });
 
     } else {

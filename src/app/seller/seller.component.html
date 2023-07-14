@@ -23,37 +23,44 @@
         <li class="menu-label">Products</li>
         <li>
             <a routerLink="products">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-package'></i>
                 </div>
                 <div class="menu-title">List Products</div>
             </a>
         </li>
         <li>
             <a routerLink="product">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-plus-circle'></i>
                 </div>
                 <div class="menu-title">Add Products</div>
             </a>
         </li>
         <li class="menu-label">Shop</li>
         <li>
-            <a routerLink=".">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+            <a routerLink="orders">
+                <div class="parent-icon"><i class='bx bx-list-ul'></i>
                 </div>
                 <div class="menu-title">Orders</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink=".">
+                <div class="parent-icon"><i class='bx bx-wallet'></i>
+                </div>
+                <div class="menu-title">Withdraw</div>
             </a>
         </li>
         <li class="menu-label">Account</li>
         <li>
             <a routerLink=".">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-store'></i>
                 </div>
                 <div class="menu-title">Store Info</div>
             </a>
         </li>
         <li (click)="onSellerLogout()">
             <a class="cursor-pointer">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-log-out-circle'></i>
                 </div>
                 <div class="menu-title">Logout</div>
             </a>
