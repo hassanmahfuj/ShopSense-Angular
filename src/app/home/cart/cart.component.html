@@ -21,7 +21,7 @@
                             </div>
                             <span class="avilable"><i class="far fa-check"></i>In Stock</span>
                             <span class="product-total-price">৳{{item.subTotal.toFixed(2)}}</span>
-                            <button type="button" class="close" data-bs-dismiss="alert"><span
+                            <button (click)="onItemRemove(item.id)" type="button" class="close" data-bs-dismiss="alert"><span
                                     aria-hidden="true">&times;</span></button>
                         </div>
                         <!-- <div class="alert fade show cart-single-item">

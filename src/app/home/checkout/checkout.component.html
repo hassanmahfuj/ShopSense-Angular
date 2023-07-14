@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <select #_dis class="form-select" name="city" id="city"
-                                            (change)="onDistrictSelect(_dis.value)">
+                                            (change)="onDistrictSelect(_dis.id)">
                                             <option value=""></option>
                                             <option *ngFor="let dis of selectedDistricts" value="{{dis.id}}">
                                                 {{dis.name}}</option>
@@ -44,14 +44,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" id="zip" name="zip" class="form-control" value=""
-                                            placeholder="Post Code" required>
+                                        <input type="text" id="zip" name="zip" class="form-control"
+                                            placeholder="Post Code" [(ngModel)]="shippingPostCode">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" id="street-name" name="street-name" class="form-control"
-                                            value="" placeholder="House, street name" required>
+                                             placeholder="House, street name" [(ngModel)]="shippingStreet">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -67,8 +67,7 @@
                         </form>
                     </div>
                     <div class="col-lg-4">
-                        <form id="payment-method" name="payment-method" class="checkout-form mb-30" action="#"
-                            method="POST">
+                        <form>
                             <h3 class="from-title mb-25">Order Summary</h3>
                             <hr>
                             <div class="package-summary mt-35 mb-25">
@@ -76,19 +75,19 @@
                                     <tbody>
                                         <tr *ngFor="let item of cartItems">
                                             <td>{{item.productName}} <strong>× {{item.productQuantity}}</strong></td>
-                                            <td>৳{{item.subTotal.toFixed(2)}}</td>
+                                            <td class="text-end">৳{{item.subTotal.toFixed(2)}}</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Charge</td>
-                                            <td>৳{{shippingCharge.toFixed(2)}}</td>
+                                            <td class="text-end">৳{{shippingCharge.toFixed(2)}}</td>
                                         </tr>
                                         <tr *ngIf="gatewayFee > 0">
                                             <td>Gateway Fee - {{gatewayFeeReason}}</td>
-                                            <td>৳{{gatewayFee.toFixed(2)}}</td>
+                                            <td class="text-end">৳{{gatewayFee.toFixed(2)}}</td>
                                         </tr>
                                         <tr *ngIf="discount > 0">
-                                            <td>Discount - {{discountReason}}</td>
-                                            <td>৳{{discount.toFixed(2)}}</td>
+                                            <td>Discount {{discountReason}}</td>
+                                            <td class="text-end">-৳{{discount.toFixed(2)}}</td>
                                         </tr>
                                         <!-- <tr>
                                             <td>Vat</td>
@@ -96,23 +95,61 @@
                                         </tr> -->
                                         <tr>
                                             <td><strong>Order Total</strong></td>
-                                            <td><strong>৳{{orderTotal.toFixed(2)}}</strong></td>
+                                            <td class="text-end"><strong>৳{{orderTotal.toFixed(2)}}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <input class="form_control" type="text" placeholder="Coupon Code">
+                            <div class="row mt-2 g-2">
+                                <h6 class="mt-2 mb-0">Use Coupon</h6>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="text" id="holder-name" name="holder-name" class="form-control"
+                                            placeholder="Coupon Code" [(ngModel)]="couponCode">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <button class="btn btn-outline-primary w-100">Apply</button>
+                                </div>
+                            </div>
                             <h5 class="title mt-2 mb-2">Payment Method</h5>
                             <div class="form-group">
                                 <select #_payment class="form-select" name="payment" id="payment"
-                                    (change)="paymentMethod(_payment.value)">
+                                    (change)="onPaymentMethod(_payment.value)">
                                     <option value="default">Choose an Option</option>
-                                    <option value="payment1">Cash on Delivery</option>
-                                    <option value="payment2">Card</option>
-                                    <option value="payment3">bKash</option>
+                                    <option value="COD">Cash on Delivery</option>
+                                    <option value="Card">Card</option>
+                                    <option value="bKash">bKash</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2 w-100">Proceed to Payment</button>
+                            <div *ngIf="cardForm" class="row mt-1 g-2">
+                                <h6 class="mt-2 mb-0">Card Details</h6>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" id="holder-name" name="holder-name" class="form-control"
+                                            placeholder="Holder Name" [(ngModel)]="cardHolderName">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" id="card-number" name="card-number" class="form-control"
+                                            placeholder="Card Number" [(ngModel)]="cardNumber">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="card-cvv" name="card-cvv" class="form-control"
+                                            placeholder="CVV" [(ngModel)]="cardCvv">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="card-number" name="card-expiry" class="form-control"
+                                            placeholder="Expiry MM/YY" [(ngModel)]="cardExpiryDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-3 w-100" (click)="placeOrder()">Place Order</button>
                         </form>
                     </div>
                 </div>

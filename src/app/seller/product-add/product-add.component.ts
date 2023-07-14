@@ -13,6 +13,7 @@ export class ProductAddComponent {
 
   saveProduct(product: Product): void {
     product.sellerId = this.sellerService.getSeller().id;
+    product.storeName = this.sellerService.getSeller().storeName;
     product.status = 'Pending';
     this.sellerService.createProduct(product).subscribe((response) => {
       if (response != null) {

@@ -9,5 +9,6 @@ export interface Product {
     stockStatus: string;
     stockCount: number;
     sellerId: number;
+    storeName: string;
     status: string;
 }

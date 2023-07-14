@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cart-item';
+import { Order } from 'src/app/interfaces/order';
+import { OrderDetails } from 'src/app/interfaces/order-details';
 import { CustomerService } from 'src/app/services/customer.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,11 +13,21 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CheckoutComponent {
 
+  @ViewChild('_div') _state!: ElementRef;
+  @ViewChild('_dis') _city!: ElementRef;
+
   customerName: string = '';
   customerEmail: string = '';
-  
+
+  shippingStreet: string = '';
+  shippingCity: string = '';
+  shippingPostCode: string = '';
+  shippingState: string = '';
+
   cartItems: CartItem[] = [];
   cartTotal: number = 0;
+
+  couponCode: string = '';
 
   shippingCharge: number = 150;
   gatewayFee: number = 0;
@@ -22,14 +35,99 @@ export class CheckoutComponent {
   discount: number = 0;
   discountReason = '';
 
+  paymentStatus: string = '';
+  paymentMethod: string = '';
+  cardForm: boolean = false;
+  cardHolderName: string = '';
+  cardNumber: string = '';
+  cardCvv: string = '';
+  cardExpiryDate: string = '';
+
   orderTotal: number = 0;
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(private customerService: CustomerService, private router: Router, private util: UtilService) { }
 
   ngOnInit(): void {
     this.customerName = this.customerService.getCustomer().name;
     this.customerEmail = this.customerService.getCustomer().email;
     this.getCartItems();
+  }
+
+  validate(): boolean {
+    if (
+      this.shippingStreet == '' ||
+      this.shippingCity == '' ||
+      this.shippingPostCode == '' ||
+      this.shippingState == '' ||
+      this.paymentMethod == '' ||
+      (
+        this.cardForm && (
+          this.cardHolderName == '' ||
+          this.cardNumber == '' ||
+          this.cardCvv == '' ||
+          this.cardExpiryDate == ''
+        )
+      )
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  placeOrder() {
+    const currentDate: Date = new Date();
+    const delivaryDate = new Date(currentDate);
+    delivaryDate.setDate(currentDate.getDate() + 3);
+
+    if (this.validate()) {
+
+      const orderDetails: OrderDetails[] = [];
+      for (let item of this.cartItems) {
+        let orderDetail: OrderDetails = {
+          productId: item.productId,
+          sellerId: item.sellerId,
+          storeName: item.storeName,
+          productName: item.productName,
+          productUnitPrice: item.productUnitPrice,
+          productThumbnailUrl: item.productThumbnailUrl,
+          status: 'Processing',
+          quantity: item.productQuantity,
+          subTotal: item.subTotal,
+          deliveryDate: delivaryDate.toISOString()
+        }
+        orderDetails.push(orderDetail);
+      }
+
+      const order: Order = {
+        orderDate: currentDate.toISOString(),
+        orderTotal: this.orderTotal,
+        customerId: this.customerService.getCustomer().id,
+        discount: this.discount,
+        shippingCharge: this.shippingCharge,
+        tax: 0,
+        shippingStreet: this.shippingStreet,
+        shippingCity: this.shippingCity,
+        shippingPostCode: this.shippingPostCode,
+        shippingState: this.shippingState,
+        shippingCountry: 'Bangladesh',
+        status: 'Processing',
+        subTotal: this.cartTotal,
+        paymentStatus: this.paymentStatus,
+        paymentMethod: this.paymentMethod,
+        cardNumber: this.cardNumber,
+        cardCvv: this.cardCvv,
+        cardHolderName: this.cardHolderName,
+        cardExpiryDate: this.cardExpiryDate,
+        orderDetails: orderDetails
+      }
+
+      this.customerService.placeOrder(order).subscribe((order) => {
+        this.util.toastify(true, "Order PLaced");
+      });
+
+    } else {
+      this.util.toastify(false, "", "Check all required fields")
+    }
   }
 
   calcOrderTotal() {
@@ -38,6 +136,9 @@ export class CheckoutComponent {
 
   getCartItems() {
     this.customerService.getCartItems().subscribe((response) => {
+      if (response.length < 1) {
+        this.router.navigate(['']);
+      }
       this.cartItems = response;
       this.cartTotal = 0;
       for (let item of this.cartItems) {
@@ -47,18 +148,25 @@ export class CheckoutComponent {
     });
   }
 
-  paymentMethod(method: any) {
-    if (method == 'payment1') {
+  onPaymentMethod(method: any) {
+    this.cardForm = false;
+    this.paymentMethod = method;
+
+    if (method == 'COD') {
       this.gatewayFee = 50;
       this.gatewayFeeReason = 'COD (Flat 50)'
+      this.paymentStatus = 'Unpaid';
     }
 
-    if (method == 'payment2') {
+    if (method == 'Card') {
       this.gatewayFee = this.cartTotal * .05;
       this.gatewayFeeReason = 'Card (5%)'
+      this.cardForm = true;
+      this.paymentStatus = 'Paid';
     }
-    if (method == 'payment3') {
+    if (method == 'bKash') {
       this.gatewayFee = 0;
+      this.paymentStatus = 'Paid';
     }
     this.calcOrderTotal();
   }
@@ -70,6 +178,7 @@ export class CheckoutComponent {
       this.shippingCharge = 150;
     }
     this.calcOrderTotal();
+    this.shippingCity = this._city.nativeElement.options[this._city.nativeElement.selectedIndex].text;
   }
 
   onDivisionSelect(id: any) {
@@ -80,6 +189,7 @@ export class CheckoutComponent {
         this.selectedDistricts.push(dis);
       }
     }
+    this.shippingState = this._state.nativeElement.options[this._state.nativeElement.selectedIndex].text;
   }
 
   selectedDistricts: any = [

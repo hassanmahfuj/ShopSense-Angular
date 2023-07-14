@@ -4,6 +4,7 @@ import { Customer } from '../interfaces/customer';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
+import { Order } from '../interfaces/order';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,9 @@ export class CustomerService {
     return this.http.get<CartItem[]>(this.baseUrl.concat('/cart'), {
       params: { "id": this.getCustomer().id }
     });
+  }
+
+  placeOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(this.baseUrl.concat('/order'), order);
   }
 }

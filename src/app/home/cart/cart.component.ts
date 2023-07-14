@@ -34,6 +34,13 @@ export class CartComponent {
       } else {
         this.util.toastify(response);
       }
+    });
+  }
+
+  onItemRemove(id: any) {
+    this.customerService.removeFromCart(id).subscribe((response) => {
+      this.getCartItems();
+      this.util.toastify(response, "Removed from cart");
     })
   }
 

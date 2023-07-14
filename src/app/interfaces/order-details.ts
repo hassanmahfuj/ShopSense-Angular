@@ -1,12 +1,14 @@
-export interface CartItem {
+export interface OrderDetails {
     id?: number;
-    customerId: number;
+    orderId?: number;
     productId: number;
     sellerId: number;
     storeName: string;
     productName: string;
-    productThumbnailUrl: string;
     productUnitPrice: number;
-    productQuantity: number;
+    productThumbnailUrl: string;
+    status: string;
+    quantity: number;
     subTotal: number;
+    deliveryDate: string;
 }
