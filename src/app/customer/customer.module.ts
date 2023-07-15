@@ -9,6 +9,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { TrackOrderComponent } from './track-order/track-order.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     AuthComponent,
     ProfileComponent,
     OrdersComponent,
-    AddressesComponent
+    AddressesComponent,
+    OrderDetailsComponent,
+    TrackOrderComponent
   ],
   imports: [
     CommonModule,

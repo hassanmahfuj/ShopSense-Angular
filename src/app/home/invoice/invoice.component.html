@@ -42,84 +42,62 @@
                                         </div>
                                     </div>
                                     <div class="col invoice-details">
-                                        <h1 class="invoice-id">INVOICE #{{invoiceId}}</h1>
-                                        <div class="date">Date of Invoice: 01/10/2018</div>
-                                        <div class="date">Due Date: 30/10/2018</div>
+                                        <h1 class="invoice-id">INVOICE #{{order.id}}</h1>
+                                        <div class="date">Date of Invoice: {{order.orderDate}}</div>
+                                        <!-- <div class="date">Due Date: 30/10/2018</div> -->
                                     </div>
                                 </div>
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th class="text-left">DESCRIPTION</th>
-                                            <th class="text-right">HOUR PRICE</th>
-                                            <th class="text-right">HOURS</th>
-                                            <th class="text-right">TOTAL</th>
+                                            <th class="text-left">PRODUCT NAME</th>
+                                            <th class="text-end">UNIT PRICE</th>
+                                            <th class="text-end">QUANTITY</th>
+                                            <th class="text-end">SUBTOTAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="no">04</td>
+                                        <tr *ngFor="let item of order.orderDetails; let i=index">
+                                            <td class="no">{{i+1}}</td>
                                             <td class="text-left">
-                                                <h3>
-                                                    <a target="_blank" href="javascript:;">
-                                                        Youtube channel
-                                                    </a>
-                                                </h3>
-                                                <a target="_blank" href="javascript:;">
-                                                    Useful videos
-                                                </a> to improve your Javascript skills. Subscribe and stay tuned :)
+                                                <h3>{{item.productName}}</h3>
                                             </td>
-                                            <td class="unit">$0.00</td>
-                                            <td class="qty">100</td>
-                                            <td class="total">$0.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no">01</td>
-                                            <td class="text-left">
-                                                <h3>Website Design</h3>Creating a recognizable design solution based on
-                                                the company's existing visual identity
-                                            </td>
-                                            <td class="unit">$40.00</td>
-                                            <td class="qty">30</td>
-                                            <td class="total">$1,200.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no">02</td>
-                                            <td class="text-left">
-                                                <h3>Website Development</h3>Developing a Content Management System-based
-                                                Website
-                                            </td>
-                                            <td class="unit">$40.00</td>
-                                            <td class="qty">80</td>
-                                            <td class="total">$3,200.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no">03</td>
-                                            <td class="text-left">
-                                                <h3>Search Engines Optimization</h3>Optimize the site for search engines
-                                                (SEO)
-                                            </td>
-                                            <td class="unit">$40.00</td>
-                                            <td class="qty">20</td>
-                                            <td class="total">$800.00</td>
+                                            <td class="unit">৳{{item.productUnitPrice.toFixed(2)}}</td>
+                                            <td class="qty">{{item.quantity}}</td>
+                                            <td class="total">৳{{item.subTotal.toFixed(2)}}</td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">SUBTOTAL</td>
-                                            <td>$5,200.00</td>
+                                            <td>৳{{order.subTotal.toFixed(2)}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
-                                            <td colspan="2">TAX 25%</td>
-                                            <td>$1,300.00</td>
+                                            <td colspan="2">GATEWAY FEE</td>
+                                            <td>৳{{order.gatewayFee.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">SHIPPING CHARGE</td>
+                                            <td>৳{{order.shippingCharge.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">DISCOUNT</td>
+                                            <td>৳{{order.discount.toFixed(2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">TAX 10%</td>
+                                            <td>৳{{order.tax.toFixed(2)}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">GRAND TOTAL</td>
-                                            <td>$6,500.00</td>
+                                            <td>৳{{order.orderTotal.toFixed(2)}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>

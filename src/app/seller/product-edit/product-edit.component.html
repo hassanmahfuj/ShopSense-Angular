@@ -49,7 +49,6 @@
                                         <label for="inputProductCategory" class="form-label">Product Category</label>
                                         <select class="form-select" id="inputProductCategory" name="category" ngModel
                                             [(ngModel)]="category">
-                                            <option>Select a category</option>
                                             <option *ngFor="let c of categories" [selected]="category == '{{c.id}}'"
                                                 value="{{c.id}}">{{c.title}}</option>
                                         </select>
@@ -58,7 +57,6 @@
                                         <label for="inputStockStatus" class="form-label">Stock Status</label>
                                         <select class="form-select" id="inputStockStatus" name="stockStatus" ngModel
                                             [(ngModel)]="stockStatus">
-                                            <option></option>
                                             <option value="In Stock" [selected]="stockStatus == 'In Stock'">In Stock
                                             </option>
                                             <option value="Out of Stock" [selected]="stockStatus == 'Out of Stock'">Out
@@ -81,7 +79,7 @@
                                 </div> -->
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary">Save Product</button>
+                                            <button type="submit" class="btn btn-primary">Update Product</button>
                                         </div>
                                     </div>
                                 </div>

@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { StoreComponent } from './store/store.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     ProductAddComponent,
     ProductEditComponent,
     OrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    WithdrawComponent,
+    StoreComponent
   ],
   imports: [
     CommonModule,

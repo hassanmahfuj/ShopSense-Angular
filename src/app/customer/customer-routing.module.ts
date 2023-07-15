@@ -6,14 +6,18 @@ import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { TrackOrderComponent } from './track-order/track-order.component';
 
 const routes: Routes = [
   {
     path: "", component: CustomerComponent,
-    canActivate: [ AuthGuard ],
+    canActivate: [AuthGuard],
     children: [
       { path: "", component: ProfileComponent },
       { path: "orders", component: OrdersComponent },
+      { path: "order/:id", component: OrderDetailsComponent },
+      { path: "track", component: TrackOrderComponent },
       { path: "addresses", component: AddressesComponent }
     ]
   },

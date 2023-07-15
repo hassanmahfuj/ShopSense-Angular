@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/interfaces/order';
 import { OrderDetails } from 'src/app/interfaces/order-details';
@@ -10,7 +10,7 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.css']
 })
-export class OrderDetailsComponent {
+export class OrderDetailsComponent implements OnInit {
 
   order: any;
   orderDetails: OrderDetails[] = [];

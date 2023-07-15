@@ -5,6 +5,9 @@ import { AuthGuard } from './auth.guard';
 import { AuthComponent } from './auth/auth.component';
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SellersComponent } from './sellers/sellers.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { CustomersComponent } from './customers/customers.component';
 
 const routes: Routes = [
   {
@@ -12,7 +15,10 @@ const routes: Routes = [
     canActivate: [ AuthGuard ],
     children: [
       { path: "", component: DashboardComponent },
-      { path: "products", component: ProductsComponent }
+      { path: "products", component: ProductsComponent },
+      { path: "sellers", component: SellersComponent },
+      { path: "withdraw", component: WithdrawComponent },
+      { path: "customers", component: CustomersComponent },
     ]
   },
   { path: "auth", component: AuthComponent }

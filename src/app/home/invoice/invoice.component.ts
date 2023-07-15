@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Order } from 'src/app/interfaces/order';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -14,11 +15,10 @@ export class InvoiceComponent implements OnInit {
   customerEmail: string = '';
   customerAddress: string = '';
 
-  invoiceId: number = 0;
+  order!: Order;
 
   constructor(
     private customerService: CustomerService,
-    private util: UtilService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,10 +26,10 @@ export class InvoiceComponent implements OnInit {
     this.customerEmail = this.customerService.getCustomer().email;
     this.customerAddress = this.customerService.getCustomer().address;
 
-    this.invoiceId = this.route.snapshot.params['id'];
-    this.customerService.getOrder(this.invoiceId).subscribe((order) => {
+    let invoiceId = this.route.snapshot.params['id'];
+    this.customerService.getOrder(invoiceId).subscribe((order) => {
       console.log(order);
-
+      this.order = order;
     });
   }
 }

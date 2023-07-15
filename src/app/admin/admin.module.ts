@@ -7,6 +7,9 @@ import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
+import { SellersComponent } from './sellers/sellers.component';
+import { CustomersComponent } from './customers/customers.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { FormsModule } from '@angular/forms';
     AdminComponent,
     ProductsComponent,
     DashboardComponent,
-    AuthComponent
+    AuthComponent,
+    SellersComponent,
+    CustomersComponent,
+    WithdrawComponent
   ],
   imports: [
     CommonModule,

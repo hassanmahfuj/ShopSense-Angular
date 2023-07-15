@@ -47,14 +47,12 @@
                                     <div class="col-12">
                                         <label for="inputProductCategory" class="form-label">Product Category</label>
                                         <select class="form-select" id="inputProductCategory" name="category" ngModel>
-                                            <option>Select a category</option>
                                             <option *ngFor="let c of categories" value="{{c.id}}">{{c.title}}</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputStockStatus" class="form-label">Stock Status</label>
                                         <select class="form-select" id="inputStockStatus" name="stockStatus" ngModel>
-                                            <option></option>
                                             <option value="In Stock">In Stock</option>
                                             <option value="Out of Stock">Out of Stock</option>
                                         </select>
