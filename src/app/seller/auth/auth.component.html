@@ -31,29 +31,29 @@
                                 <h4 class="">Create an account</h4>
                             </div>
                             <div class="form-body">
-                                <form class="row g-3">
+                                <form #_form_reg="ngForm" (submit)="onSellerSignup(_form_reg.value)" class="row g-3">
                                     <div class="col-12">
                                         <label for="owner_name" class="form-label">Owner Name</label>
-                                        <input type="text" class="form-control" id="owner_name">
+                                        <input type="text" class="form-control" id="owner_name" name="name" ngModel>
                                     </div>
                                     <div class="col-12">
                                         <label for="store_name" class="form-label">Store Name</label>
-                                        <input type="text" class="form-control" id="store_name">
+                                        <input type="text" class="form-control" id="store_name" name="storeName" ngModel>
                                     </div>
                                     <div class="col-12">
                                         <label for="address" class="form-label">Office Address</label>
-                                        <input type="text" class="form-control" id="address">
+                                        <input type="text" class="form-control" id="address" name="officeAddress" ngModel>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputEmailAddress" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmailAddress"
-                                            placeholder="jhon@example.com">
+                                            placeholder="jhon@example.com" name="email" ngModel>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputChoosePassword" class="form-label">Password</label>
                                         <div class="input-group" id="show_hide_password">
                                             <input type="password" class="form-control border-end-0"
-                                                id="inputChoosePassword" value="" placeholder="Enter Password">
+                                                id="inputChoosePassword" placeholder="Enter Password" name="password" ngModel>
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class="bx bx-hide"></i></a>
                                         </div>

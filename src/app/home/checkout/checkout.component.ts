@@ -90,7 +90,7 @@ export class CheckoutComponent {
           productName: item.productName,
           productUnitPrice: item.productUnitPrice,
           productThumbnailUrl: item.productThumbnailUrl,
-          status: 'Processing',
+          status: 'Pending',
           quantity: item.productQuantity,
           subTotal: item.subTotal,
           deliveryDate: delivaryDate.toISOString()

@@ -13,14 +13,20 @@ export class SellerService {
 
   private baseUrl: string = 'http://localhost:8080/seller';
 
+  categories: string[] = ["Watches", "Furniture", "Mobile", "Clothing", "Shoes"]
+
   constructor(private http: HttpClient) { }
 
   sellerLogin(seller: Seller): Observable<Seller> {
     return this.http.post<Seller>(this.baseUrl.concat('/login'), seller);
   }
 
+  sellerSignup(seller: Seller): Observable<Seller> {
+    return this.http.post<Seller>(this.baseUrl.concat('/signup'), seller);
+  }
+
   getSeller(): Seller {
-    return JSON.parse(localStorage.getItem('seller-token') || '{}');    
+    return JSON.parse(localStorage.getItem('seller-token') || '{}');
   }
 
   getProduct(id: number): Observable<Product> {
@@ -54,7 +60,7 @@ export class SellerService {
       params: { "orderid": orderId, "sellerid": sellerId }
     });
   }
-  
+
   updateOrder(order: OrderDetails): Observable<boolean> {
     return this.http.put<boolean>(this.baseUrl.concat('/order'), order);
   }

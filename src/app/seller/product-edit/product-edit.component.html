@@ -5,67 +5,72 @@
             <hr />
             <div class="form-body mt-4">
                 <form #_form="ngForm" (submit)="updateProduct(_form.value)">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="border border-3 p-4 rounded">
-                            <div class="mb-3">
-                                <label for="inputProductTitle" class="form-label">Product Title</label>
-                                <input type="text" class="form-control" id="inputProductTitle"
-                                placeholder="Enter product title" name="title" ngModel [(ngModel)]="title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="inputProductThumbnail" class="form-label">Thumbnail Url</label>
-                                <input type="text" class="form-control" id="inputProductThumbnail"
-                                    placeholder="Enter thumbnail url" name="thumbnailUrl" ngModel [(ngModel)]="thumbnailUrl">
-                            </div>
-                            <div class="mb-3">
-                                <label for="inputProductDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="inputProductDescription" rows="3" name="description" ngModel [(ngModel)]="description"></textarea>
-                            </div>
-                            <!-- <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="border border-3 p-4 rounded">
+                                <div class="mb-3">
+                                    <label for="inputProductTitle" class="form-label">Product Title</label>
+                                    <input type="text" class="form-control" id="inputProductTitle"
+                                        placeholder="Enter product title" name="title" ngModel [(ngModel)]="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputProductThumbnail" class="form-label">Thumbnail Url</label>
+                                    <input type="text" class="form-control" id="inputProductThumbnail"
+                                        placeholder="Enter thumbnail url" name="thumbnailUrl" ngModel
+                                        [(ngModel)]="thumbnailUrl">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputProductDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="inputProductDescription" rows="3"
+                                        name="description" ngModel [(ngModel)]="description"></textarea>
+                                </div>
+                                <!-- <div class="mb-3">
                                 <label for="inputProductDescription" class="form-label">Product Images</label>
                                 <input id="image-uploadify" type="file"
                                     accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                                     multiple>
                             </div> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="border border-3 p-4 rounded">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputRegularPrice" class="form-label">Regular Price</label>
-                                    <input type="number" class="form-control" id="inputRegularPrice" placeholder="00.00" name="regularPrice" ngModel [(ngModel)]="regularPrice">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputSalePrice" class="form-label">Sale Price</label>
-                                    <input type="number" class="form-control" id="inputSalePrice"
-                                        placeholder="00.00" name="salePrice" ngModel [(ngModel)]="salePrice">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputProductCategory" class="form-label">Product Category</label>
-                                    <select class="form-select" id="inputProductCategory" name="category" ngModel [(ngModel)]="category">
-                                        <option></option>
-                                        <option value="Shoes" [selected]="category == 'Shoes'">Shoes</option>
-                                        <option value="Clothing" [selected]="category == 'Clothing'">Clothing</option>
-                                        <option value="Watches" [selected]="category == 'Watches'">Watches</option>
-                                        <option value="Furniture" [selected]="category == 'Furniture'">Furniture</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputStockStatus" class="form-label">Stock Status</label>
-                                    <select class="form-select" id="inputStockStatus" name="stockStatus" ngModel [(ngModel)]="stockStatus">
-                                        <option></option>
-                                        <option value="In Stock" [selected]="stockStatus == 'In Stock'">In Stock</option>
-                                        <option value="Out of Stock" [selected]="stockStatus == 'Out of Stock'">Out of Stock</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputStockCount" class="form-label">Stock Count</label>
-                                    <input type="number" class="form-control" id="inputStockCount"
-                                        placeholder="0" name="stockCount" ngModel [(ngModel)]="stockCount">
-                                </div>
-                                <!-- <div class="col-12">
+                        <div class="col-lg-4">
+                            <div class="border border-3 p-4 rounded">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="inputRegularPrice" class="form-label">Regular Price</label>
+                                        <input type="number" class="form-control" id="inputRegularPrice"
+                                            placeholder="00.00" name="regularPrice" ngModel [(ngModel)]="regularPrice">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputSalePrice" class="form-label">Sale Price</label>
+                                        <input type="number" class="form-control" id="inputSalePrice"
+                                            placeholder="00.00" name="salePrice" ngModel [(ngModel)]="salePrice">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputProductCategory" class="form-label">Product Category</label>
+                                        <select class="form-select" id="inputProductCategory" name="category" ngModel
+                                            [(ngModel)]="category">
+                                            <option>Select a category</option>
+                                            <option *ngFor="let c of categories" [selected]="category == '{{c.id}}'"
+                                                value="{{c.id}}">{{c.title}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputStockStatus" class="form-label">Stock Status</label>
+                                        <select class="form-select" id="inputStockStatus" name="stockStatus" ngModel
+                                            [(ngModel)]="stockStatus">
+                                            <option></option>
+                                            <option value="In Stock" [selected]="stockStatus == 'In Stock'">In Stock
+                                            </option>
+                                            <option value="Out of Stock" [selected]="stockStatus == 'Out of Stock'">Out
+                                                of Stock</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputStockCount" class="form-label">Stock Count</label>
+                                        <input type="number" class="form-control" id="inputStockCount" placeholder="0"
+                                            name="stockCount" ngModel [(ngModel)]="stockCount">
+                                    </div>
+                                    <!-- <div class="col-12">
                                     <label for="inputStatus" class="form-label">Status</label>
                                     <select class="form-select" id="inputStatus" name="status" ngModel>
                                         <option></option>
@@ -74,16 +79,16 @@
                                         <option value="Rejected">Rejected</option>
                                     </select>
                                 </div> -->
-                                <div class="col-12">
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Save Product</button>
+                                    <div class="col-12">
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">Save Product</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div><!--end row-->
-            </form>
+                    </div><!--end row-->
+                </form>
             </div>
         </div>
     </div>

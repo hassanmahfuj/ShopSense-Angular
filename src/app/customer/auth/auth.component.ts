@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/interfaces/customer';
 import { CustomerService } from 'src/app/services/customer.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,11 @@ export class AuthComponent {
 
   signIn: boolean = true;
 
-  constructor(private customerService: CustomerService, private router: Router) {
+  constructor(
+    private customerService: CustomerService,
+     private router: Router,
+     private util: UtilService
+     ) {
 
     if (localStorage.getItem('customer-token') != null) {
       this.router.navigate(['customer']);
@@ -25,9 +30,9 @@ export class AuthComponent {
         if (customer != null) {
           localStorage.setItem('customer-token', JSON.stringify(customer));
           this.router.navigate(['customer']);
-          alert("Signin Complete");
+          this.util.toastify(true, "Successfully logged in");
         } else {
-          alert("Something went wrong");
+          this.util.toastify(false);
         }
       }
     )
@@ -40,9 +45,9 @@ export class AuthComponent {
         if (customer != null) {
           localStorage.setItem('customer-token', JSON.stringify(customer));
           this.router.navigate(['customer']);
-          alert("Signup Complete");
+          this.util.toastify(true, "Registered successfully and logged in");
         } else {
-          alert("Something went wrong");
+          this.util.toastify(false);
         }
       }
     )

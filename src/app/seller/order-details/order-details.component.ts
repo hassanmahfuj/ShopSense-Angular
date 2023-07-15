@@ -17,7 +17,6 @@ export class OrderDetailsComponent {
 
   constructor(
     private sellerService: SellerService,
-    private router: Router,
     private route: ActivatedRoute,
     private util: UtilService
   ) { }
@@ -32,19 +31,11 @@ export class OrderDetailsComponent {
     });
   }
 
-  onComplete(pos: number) {
+  onStatusChange(pos: number, status: string) {
     let o: OrderDetails = this.orderDetails[pos];
-    o.status = 'Completed';
+    o.status = status;
     this.sellerService.updateOrder(o).subscribe((success) => {
-      this.util.toastify(success, "Order Completed");
-    });
-  }
-
-  onCancel(pos: number) {
-    let o: OrderDetails = this.orderDetails[pos];
-    o.status = 'Canceled';
-    this.sellerService.updateOrder(o).subscribe((success) => {
-      this.util.toastify(success, "Order Canceled");
+      this.util.toastify(success, "Order " + status);
     });
   }
 }

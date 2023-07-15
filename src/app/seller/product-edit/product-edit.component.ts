@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/interfaces/category';
 import { Product } from 'src/app/interfaces/product';
+import { CategoryService } from 'src/app/services/category.service';
 import { SellerService } from 'src/app/services/seller.service';
 
 @Component({
@@ -20,7 +22,14 @@ export class ProductEditComponent implements OnInit {
   stockStatus: any;
   stockCount: any;
 
-  constructor(private sellerService: SellerService, private route: ActivatedRoute) { }
+  categories: Category[] = [];
+
+  constructor(
+    private sellerService: SellerService,
+    private route: ActivatedRoute,
+    private categoryService: CategoryService
+  ) { }
+
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -33,7 +42,11 @@ export class ProductEditComponent implements OnInit {
       this.category = p.category;
       this.stockStatus = p.stockStatus;
       this.stockCount = p.stockCount;
-    })
+    });
+
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   updateProduct(product: Product): void {
