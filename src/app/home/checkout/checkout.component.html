@@ -27,6 +27,7 @@
                                     <div class="form-group">
                                         <select #_div class="form-select" name="state" id="state"
                                             (change)="onDivisionSelect(_div.value)">
+                                            <option value="">Select Division</option>
                                             <option *ngFor="let div of divisions" value="{{div.id}}">{{div.name}}
                                             </option>
                                         </select>
@@ -36,7 +37,7 @@
                                     <div class="form-group">
                                         <select #_dis class="form-select" name="city" id="city"
                                             (change)="onDistrictSelect(_dis.value)">
-                                            <option value=""></option>
+                                            <option value="">Select District</option>
                                             <option *ngFor="let dis of selectedDistricts" value="{{dis.id}}">
                                                 {{dis.name}}</option>
                                         </select>
@@ -85,14 +86,14 @@
                                             <td>Gateway Fee - {{gatewayFeeReason}}</td>
                                             <td class="text-end">৳{{gatewayFee.toFixed(2)}}</td>
                                         </tr>
+                                        <tr *ngIf="tax > 0">
+                                            <td>Tax (5%)</td>
+                                            <td class="text-end">৳{{tax.toFixed(2)}}</td>
+                                        </tr>
                                         <tr *ngIf="discount > 0">
                                             <td>Discount {{discountReason}}</td>
                                             <td class="text-end">-৳{{discount.toFixed(2)}}</td>
                                         </tr>
-                                        <!-- <tr>
-                                            <td>Vat</td>
-                                            <td>৳0.00</td>
-                                        </tr> -->
                                         <tr>
                                             <td><strong>Order Total</strong></td>
                                             <td class="text-end"><strong>৳{{orderTotal.toFixed(2)}}</strong></td>
@@ -116,7 +117,7 @@
                             <div class="form-group">
                                 <select #_payment class="form-select" name="payment" id="payment"
                                     (change)="onPaymentMethod(_payment.value)">
-                                    <option value="default">Choose an Option</option>
+                                    <option value="">Choose an Option</option>
                                     <option value="COD">Cash on Delivery</option>
                                     <option value="Card">Card</option>
                                     <option value="bKash">bKash</option>

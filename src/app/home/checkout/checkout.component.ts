@@ -34,6 +34,7 @@ export class CheckoutComponent {
   gatewayFeeReason: string = '';
   discount: number = 0;
   discountReason = '';
+  tax = 0;
 
   paymentStatus: string = '';
   paymentMethod: string = '';
@@ -56,8 +57,10 @@ export class CheckoutComponent {
   validate(): boolean {
     if (
       this.shippingStreet == '' ||
+      this.shippingCity == 'Select District' ||
       this.shippingCity == '' ||
       this.shippingPostCode == '' ||
+      this.shippingState == 'Select Division' ||
       this.shippingState == '' ||
       this.paymentMethod == '' ||
       (
@@ -104,7 +107,7 @@ export class CheckoutComponent {
         customerId: this.customerService.getCustomer().id,
         discount: this.discount,
         shippingCharge: this.shippingCharge,
-        tax: 0,
+        tax: this.tax,
         shippingStreet: this.shippingStreet,
         shippingCity: this.shippingCity,
         shippingPostCode: this.shippingPostCode,
@@ -118,12 +121,13 @@ export class CheckoutComponent {
         cardCvv: this.cardCvv,
         cardHolderName: this.cardHolderName,
         cardExpiryDate: this.cardExpiryDate,
-        orderDetails: orderDetails
+        orderDetails: orderDetails,
+        gatewayFee: this.gatewayFee
       }
 
       this.customerService.placeOrder(order).subscribe((order) => {
         if(order != null) {
-          this.util.toastify(true, "Order PLaced");
+          this.util.toastify(true, "Order Placed");
           this.router.navigate(['../invoice', order.id]);
         } else {
           this.util.toastify(false);
@@ -136,7 +140,7 @@ export class CheckoutComponent {
   }
 
   calcOrderTotal() {
-    this.orderTotal = this.cartTotal + this.shippingCharge + this.gatewayFee - this.discount;
+    this.orderTotal = this.cartTotal + this.shippingCharge + this.gatewayFee - this.discount + this.tax;
   }
 
   getCartItems() {
@@ -149,6 +153,7 @@ export class CheckoutComponent {
       for (let item of this.cartItems) {
         this.cartTotal += item.subTotal;
       }
+      this.tax = this.cartTotal * .10;
       this.calcOrderTotal();
     });
   }
@@ -197,146 +202,7 @@ export class CheckoutComponent {
     this.shippingState = this._state.nativeElement.options[this._state.nativeElement.selectedIndex].text;
   }
 
-  selectedDistricts: any = [
-    {
-      "id": "1",
-      "division_id": "3",
-      "name": "Dhaka",
-      "bn_name": "ঢাকা",
-      "lat": "23.7115253",
-      "long": "90.4111451"
-    },
-    {
-      "id": "2",
-      "division_id": "3",
-      "name": "Faridpur",
-      "bn_name": "ফরিদপুর",
-      "lat": "23.6070822",
-      "long": "89.8429406"
-    },
-
-    {
-      "id": "3",
-      "division_id": "3",
-      "name": "Gazipur",
-      "bn_name": "গাজীপুর",
-      "lat": "24.0022858",
-      "long": "90.4264283"
-    },
-
-    {
-      "id": "4",
-      "division_id": "3",
-      "name": "Gopalganj",
-      "bn_name": "গোপালগঞ্জ",
-      "lat": "23.0050857",
-      "long": "89.8266059"
-    },
-    {
-      "id": "5",
-      "division_id": "8",
-      "name": "Jamalpur",
-      "bn_name": "জামালপুর",
-      "lat": "24.937533",
-      "long": "89.937775"
-    },
-    {
-      "id": "6",
-      "division_id": "3",
-      "name": "Kishoreganj",
-      "bn_name": "কিশোরগঞ্জ",
-      "lat": "24.444937",
-      "long": "90.776575"
-    },
-    {
-      "id": "7",
-      "division_id": "3",
-      "name": "Madaripur",
-      "bn_name": "মাদারীপুর",
-      "lat": "23.164102",
-      "long": "90.1896805"
-    },
-    {
-      "id": "8",
-      "division_id": "3",
-      "name": "Manikganj",
-      "bn_name": "মানিকগঞ্জ",
-      "lat": "23.8644",
-      "long": "90.0047"
-    },
-    {
-      "id": "9",
-      "division_id": "3",
-      "name": "Munshiganj",
-      "bn_name": "মুন্সিগঞ্জ",
-      "lat": "23.5422",
-      "long": "90.5305"
-    },
-    {
-      "id": "10",
-      "division_id": "8",
-      "name": "Mymensingh",
-      "bn_name": "ময়মনসিংহ",
-      "lat": "24.7471",
-      "long": "90.4203"
-    },
-    {
-      "id": "11",
-      "division_id": "3",
-      "name": "Narayanganj",
-      "bn_name": "নারায়াণগঞ্জ",
-      "lat": "23.63366",
-      "long": "90.496482"
-    },
-    {
-      "id": "12",
-      "division_id": "3",
-      "name": "Narsingdi",
-      "bn_name": "নরসিংদী",
-      "lat": "23.932233",
-      "long": "90.71541"
-    },
-    {
-      "id": "13",
-      "division_id": "8",
-      "name": "Netrokona",
-      "bn_name": "নেত্রকোণা",
-      "lat": "24.870955",
-      "long": "90.727887"
-    },
-    {
-      "id": "14",
-      "division_id": "3",
-      "name": "Rajbari",
-      "bn_name": "রাজবাড়ি",
-      "lat": "23.7574305",
-      "long": "89.6444665"
-    },
-    {
-      "id": "15",
-      "division_id": "3",
-      "name": "Shariatpur",
-      "bn_name": "শরীয়তপুর",
-      "lat": "23.2423",
-      "long": "90.4348"
-    },
-    {
-      "id": "16",
-      "division_id": "8",
-      "name": "Sherpur",
-      "bn_name": "শেরপুর",
-      "lat": "25.0204933",
-      "long": "90.0152966"
-    },
-    {
-      "id": "17",
-      "division_id": "3",
-      "name": "Tangail",
-      "bn_name": "টাঙ্গাইল",
-      "lat": "24.2513",
-      "long": "89.9167"
-    }
-  ];
+  selectedDistricts: any = [];
 
   divisions: any[] = [
     {
