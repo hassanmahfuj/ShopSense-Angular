@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartItem } from 'src/app/interfaces/cart-item';
 import { CustomerService } from 'src/app/services/customer.service';
 
@@ -8,7 +9,7 @@ import { CustomerService } from 'src/app/services/customer.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   customerName: string = '';
   searchQuery: string = '';
@@ -16,12 +17,22 @@ export class HeaderComponent implements OnInit {
   cartItems: CartItem[] = [];
   cartTotal: number = 0;
 
+  private updateCart: Subscription;
+
   constructor(private customerService: CustomerService, private router: Router) {
     this.customerName = customerService.getCustomer().name;
+
+    this.updateCart = customerService.parentMethodCalled$.subscribe(data => {
+      this.getCartItems();
+    });
   }
 
   ngOnInit(): void {
     this.getCartItems();
+  }
+
+  ngOnDestroy(): void {
+    this.updateCart.unsubscribe();
   }
 
   search(): void {

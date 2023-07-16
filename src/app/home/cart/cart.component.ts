@@ -30,6 +30,7 @@ export class CartComponent {
     this.customerService.updateCart(item).subscribe((response) => {
       if (response) {
         this.getCartItems();
+        this.customerService.toUpdateCart();
         this.util.toastify(response);
       } else {
         this.util.toastify(response);
@@ -41,6 +42,7 @@ export class CartComponent {
     this.customerService.removeFromCart(id).subscribe((response) => {
       this.getCartItems();
       this.util.toastify(response, "Removed from cart");
+      this.customerService.toUpdateCart();
     })
   }
 

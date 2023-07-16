@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cart-item';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -17,7 +17,12 @@ export class ProductComponent implements OnInit {
   regularPrice: any;
   quantity: number = 1;
 
-  constructor(private customerService: CustomerService, private route: ActivatedRoute, private util: UtilService) { }
+  constructor(
+    private customerService: CustomerService,
+    private route: ActivatedRoute,
+    private util: UtilService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
@@ -51,7 +56,13 @@ export class ProductComponent implements OnInit {
       subTotal: this.product.salePrice * this.quantity,
     };
     this.customerService.addToCart(cartItem).subscribe((response) => {
-      this.util.toastify(response != null, "Added to cart")
+      this.util.toastify(response != null, "Added to cart");
+      this.customerService.toUpdateCart();
     });
+  }
+
+  buyNow() {
+    this.addToCart();
+    this.router.navigate(['cart'])
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Customer } from '../interfaces/customer';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
 import { Order } from '../interfaces/order';
@@ -11,9 +11,17 @@ import { Order } from '../interfaces/order';
 })
 export class CustomerService {
 
+  constructor(private http: HttpClient) { }
+
   private baseUrl: string = 'http://localhost:8080/customer';
 
-  constructor(private http: HttpClient) { }
+  private parentMethodCallSource = new Subject<any>();
+
+  parentMethodCalled$ = this.parentMethodCallSource.asObservable();
+
+  toUpdateCart() {
+    this.parentMethodCallSource.next("");
+  }
 
   customerLogin(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.baseUrl.concat('/login'), customer);
@@ -54,6 +62,8 @@ export class CustomerService {
       params: { "id": this.getCustomer().id }
     });
   }
+
+
 
   placeOrder(order: Order): Observable<Order> {
     return this.http.post<Order>(this.baseUrl.concat('/order'), order);
