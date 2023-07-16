@@ -35,7 +35,7 @@ export class ProductAddComponent implements OnInit {
     this.sellerService.createProduct(product).subscribe((response) => {
       if (response != null) {
         this.util.toastify(true, "Product Added Successfully");
-        this.router.navigate(['products']);
+        this.router.navigate(['seller/products']);
       } else {
         this.util.toastify(false);
       }

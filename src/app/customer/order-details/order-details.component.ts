@@ -27,6 +27,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   trackOrder(orderItem: OrderDetails) {
-    this.router.navigate(['customer/track'], { state: { data: orderItem } });
+    // this.router.navigate(['customer/track'], { state: { data: orderItem } });
+    this.router.navigate(['customer/track', orderItem.id]);
   }
 }

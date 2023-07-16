@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SellersComponent } from './sellers/sellers.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CustomersComponent } from './customers/customers.component';
+import { CouponsComponent } from './coupons/coupons.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,8 @@ const routes: Routes = [
       { path: "sellers", component: SellersComponent },
       { path: "withdraw", component: WithdrawComponent },
       { path: "customers", component: CustomersComponent },
+      { path: "categories", component: CategoriesComponent },
+      { path: "coupons", component: CouponsComponent }
     ]
   },
   { path: "auth", component: AuthComponent }

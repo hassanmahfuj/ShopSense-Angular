@@ -4,6 +4,7 @@ import { Category } from 'src/app/interfaces/category';
 import { Product } from 'src/app/interfaces/product';
 import { CategoryService } from 'src/app/services/category.service';
 import { SellerService } from 'src/app/services/seller.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -27,7 +28,8 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private sellerService: SellerService,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private util: UtilService
   ) { }
 
 
@@ -52,11 +54,7 @@ export class ProductEditComponent implements OnInit {
   updateProduct(product: Product): void {
     product.id = this.id;
     this.sellerService.updateProduct(product).subscribe((response) => {
-      if (response) {
-        alert("Product Updated")
-      } else {
-        alert("Something went wrong")
-      }
+      this.util.toastify(response, "Product Updated");
     });
   }
 }

@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
 import { Order } from '../interfaces/order';
+import { OrderDetails } from '../interfaces/order-details';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,12 @@ export class CustomerService {
 
   getOrders(id: number): Observable<Order[]> {
     return this.http.get<Order[]>(this.baseUrl.concat('/orders'), {
+      params: { "id": id }
+    });
+  }
+
+  trackOrder(id: number): Observable<OrderDetails> {
+    return this.http.get<OrderDetails>(this.baseUrl.concat('/track'), {
       params: { "id": id }
     });
   }

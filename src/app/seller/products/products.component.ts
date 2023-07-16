@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { SellerService } from 'src/app/services/seller.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,10 @@ import { SellerService } from 'src/app/services/seller.service';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private sellerService: SellerService) { }
+  constructor(
+    private sellerService: SellerService,
+    private util: UtilService
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -27,7 +31,7 @@ export class ProductsComponent implements OnInit {
     if (bool) {
       this.sellerService.deleteProduct(id).subscribe((response) => {
         this.getProducts();
-        console.log(response);
+        this.util.toastify(response, "Product Deleted");
       });
     }
   }

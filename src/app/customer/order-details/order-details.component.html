@@ -60,27 +60,27 @@
                     <tbody>
                         <tr>
                             <th>Subotal</th>
-                            <td class="text-end">৳{{order.subTotal}}</td>
+                            <td class="text-end">৳{{order.subTotal.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <th>Shipping Charge</th>
-                            <td class="text-end">৳{{order.shippingCharge}}</td>
+                            <td class="text-end">৳{{order.shippingCharge.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <th>Gateway Fee</th>
-                            <td class="text-end">৳{{order.shippingCharge}}</td>
+                            <td class="text-end">৳{{order.gatewayFee.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <th>Tax (5%)</th>
-                            <td class="text-end">৳{{order.tax}}</td>
+                            <td class="text-end">৳{{order.tax.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <th>Discount</th>
-                            <td class="text-end">৳{{order.discount}}</td>
+                            <td class="text-end">৳{{order.discount.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
-                            <td class="text-end"><strong>৳{{order.orderTotal}}</strong></td>
+                            <td class="text-end"><strong>৳{{order.orderTotal.toFixed(2)}}</strong></td>
                         </tr>
                     </tbody>
                 </table>

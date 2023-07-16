@@ -11,10 +11,10 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class ProductComponent implements OnInit {
   product: any;
-  title: any;
-  thumbnailUrl: any;
-  salePrice: any;
-  regularPrice: any;
+  // title: any;
+  // thumbnailUrl: any;
+  // salePrice: any;
+  // regularPrice: any;
   quantity: number = 1;
 
   constructor(
@@ -28,10 +28,12 @@ export class ProductComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.customerService.getProduct(id).subscribe((response) => {
       this.product = response;
-      this.title = response.title;
-      this.thumbnailUrl = response.thumbnailUrl;
-      this.salePrice = response.salePrice;
-      this.regularPrice = response.regularPrice;
+      // this.title = response.title;
+      // this.thumbnailUrl = response.thumbnailUrl;
+      // this.salePrice = response.salePrice;
+      // this.regularPrice = response.regularPrice;
+      // this.regularPrice = response.category;
+      // this.regularPrice = response.storeName;
     });
   }
 

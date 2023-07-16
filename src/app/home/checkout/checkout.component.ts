@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cart-item';
 import { Order } from 'src/app/interfaces/order';
 import { OrderDetails } from 'src/app/interfaces/order-details';
+import { CouponService } from 'src/app/services/coupon.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -46,7 +47,12 @@ export class CheckoutComponent {
 
   orderTotal: number = 0;
 
-  constructor(private customerService: CustomerService, private router: Router, private util: UtilService) { }
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private util: UtilService,
+    private couponService: CouponService
+  ) { }
 
   ngOnInit(): void {
     this.customerName = this.customerService.getCustomer().name;
@@ -126,9 +132,10 @@ export class CheckoutComponent {
       }
 
       this.customerService.placeOrder(order).subscribe((order) => {
-        if(order != null) {
+        if (order != null) {
           this.util.toastify(true, "Order Placed");
           this.router.navigate(['../invoice', order.id]);
+          this.customerService.toUpdateCart();
         } else {
           this.util.toastify(false);
         }
@@ -137,6 +144,24 @@ export class CheckoutComponent {
     } else {
       this.util.toastify(false, "", "Check all required fields")
     }
+  }
+
+  applyCoupon() {
+    this.couponService.checkCoupon(this.couponCode).subscribe((coupon) => {
+      if (coupon != null) {
+        if (coupon.couponType == 'Flat') {
+          this.discount = coupon.couponValue;
+          this.discountReason = "(" + coupon.couponType + " " + coupon.couponValue;
+        } else {
+          this.discount = this.cartTotal * (coupon.couponValue / 100);
+          this.discountReason = "(" + coupon.couponValue + "%)";
+        }
+        this.calcOrderTotal();
+        this.util.toastify(true, "Coupon Applied");
+      } else {
+        this.util.toastify(false, "", "Coupon is not valid");
+      }
+    });
   }
 
   calcOrderTotal() {

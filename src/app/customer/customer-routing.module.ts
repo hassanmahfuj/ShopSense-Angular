@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: "", component: ProfileComponent },
       { path: "orders", component: OrdersComponent },
       { path: "order/:id", component: OrderDetailsComponent },
-      { path: "track", component: TrackOrderComponent },
+      { path: "track/:id", component: TrackOrderComponent },
       { path: "addresses", component: AddressesComponent }
     ]
   },

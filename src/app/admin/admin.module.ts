@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { SellersComponent } from './sellers/sellers.component';
 import { CustomersComponent } from './customers/customers.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     AuthComponent,
     SellersComponent,
     CustomersComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    CategoriesComponent,
+    CouponsComponent
   ],
   imports: [
     CommonModule,

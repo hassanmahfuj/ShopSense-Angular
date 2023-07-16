@@ -56,7 +56,7 @@
                         <h6 class="card-title cursor-pointer">{{p.title}}</h6>
                         <div class="clearfix">
                             <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary">${{p.regularPrice}}</span><span>${{p.salePrice}}</span></p>
+                            <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary">{{p.regularPrice | currency: 'TK ':'symbol':'1.0-0'}}</span><span>{{p.salePrice | currency: 'TK ':'symbol':'1.0-0'}}</span></p>
                         </div>
                         <div class="d-flex align-items-center mt-3 fs-6">
                           <div class="cursor-pointer">
