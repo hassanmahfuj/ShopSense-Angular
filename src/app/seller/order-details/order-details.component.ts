@@ -34,6 +34,9 @@ export class OrderDetailsComponent implements OnInit {
   onStatusChange(pos: number, status: string) {
     let o: OrderDetails = this.orderDetails[pos];
     o.status = status;
+    if(o.status == 'Delivered') {
+      o.deliveryDate = new Date().toISOString();
+    }
     this.sellerService.updateOrder(o).subscribe((success) => {
       this.util.toastify(success, "Order " + status);
     });

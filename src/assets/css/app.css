@@ -2530,13 +2530,13 @@ input::placeholder {
 	.mobile-toggle-menu {
 		display: block
 	}
-	.sidebar-wrapper {
+	/* .sidebar-wrapper {
 		left: -300px;
 		box-shadow: none
-	}
-	.page-wrapper {
+	} */
+	/* .page-wrapper {
 		margin-left: 0
-	}
+	} */
 	.page-footer {
 		left: 0
 	}

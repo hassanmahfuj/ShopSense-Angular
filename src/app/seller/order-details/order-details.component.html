@@ -38,7 +38,7 @@
                                     <a (click)="onCancel(i)" class="ms-3 cursor-pointer"><i class='bx bx-x'></i></a>
                                 </div> -->
                                 <select #_status class="form-select" name="actions" id="actions"
-                                    (change)="onStatusChange(i, _status.value)">
+                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status=='Delivered'">
                                     <option [selected]="p.status=='Pending'" value="Pending">Pending</option>
                                     <option [selected]="p.status=='Canceled'" value="Canceled">Canceled</option>
                                     <option [selected]="p.status=='Processing'" value="Processing">Processing</option>
