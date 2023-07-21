@@ -23,7 +23,7 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const orderId = this.route.snapshot.params["id"];
-    this.sellerService.getOrder(orderId, this.sellerService.getSeller().id).subscribe((order) => {
+    this.sellerService.getOrder(orderId, this.sellerService.getSellerToken().id).subscribe((order) => {
       this.order = order;
       for (const item of order.orderDetails) {
         this.orderDetails.push(item);

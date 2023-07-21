@@ -29,8 +29,8 @@ export class ProductAddComponent implements OnInit {
   }
 
   saveProduct(product: Product): void {
-    product.sellerId = this.sellerService.getSeller().id;
-    product.storeName = this.sellerService.getSeller().storeName;
+    product.sellerId = this.sellerService.getSellerToken().id;
+    product.storeName = this.sellerService.getSellerToken().storeName;
     product.status = 'Pending';
     this.sellerService.createProduct(product).subscribe((response) => {
       if (response != null) {

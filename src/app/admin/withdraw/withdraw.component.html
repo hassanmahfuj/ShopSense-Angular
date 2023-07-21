@@ -1,7 +1,69 @@
 <div class="page-content">
+    <h4>Pending Withdraw Requests</h4>
     <div class="card">
         <div class="card-body">
-            <h4>Withdraw Requests</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Store Name</th>
+                        <th>Request Date</th>
+                        <th>Amount</th>
+                        <th>View Details</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of pendingWithdrawals; let i=index">
+                        <td>{{t.storeName}}</td>
+                        <td>{{t.requestDate}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button>
+                        </td>
+                        <td>
+                            <div class="d-flex order-actions">
+                                <a (click)="updateWithdraw(i, 'Paid')" class="cursor-pointer"><i
+                                        class='bx bx-check'></i></a>
+                                <a (click)="updateWithdraw(i, 'Declined')" class="ms-3 cursor-pointer"><i
+                                        class='bx bx-x'></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <span *ngIf="pendingWithdrawals.length == 0" class="d-block text-center">No pending requests found!</span>
+        </div>
+    </div>
+    <h4>Transactions History</h4>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Store Name</th>
+                        <th>Request Date</th>
+                        <th>Amount</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of transactions">
+                        <td>{{t.id}}</td>
+                        <td>{{t.storeName}}</td>
+                        <td>{{t.requestDate}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>{{t.paymentDate}}</td>
+                        <td>
+                            <div [class]="t.status=='Declined' ? 'text-danger bg-light-danger' : t.status=='Pending' ? 'text-warning bg-light-warning' : 'text-success bg-light-success'"
+                                class="badge rounded-pill p-2 text-uppercase px-3">
+                                <i class='bx bxs-circle me-1'></i>{{t.status}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

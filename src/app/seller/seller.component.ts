@@ -12,7 +12,7 @@ export class SellerComponent {
   sellerName: string = '';
 
   constructor(private router: Router, private sellerService: SellerService) {
-    this.sellerName = sellerService.getSeller().name;
+    this.sellerName = sellerService.getSellerToken().name;
   }
 
   onSellerLogout(): void {

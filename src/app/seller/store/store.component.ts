@@ -14,7 +14,7 @@ export class StoreComponent {
   constructor(
     private sellerService: SellerService
   ) {
-    this.storeName = sellerService.getSeller().storeName;
-    this.officeAddress = sellerService.getSeller().officeAddress;
+    this.storeName = sellerService.getSellerToken().storeName;
+    this.officeAddress = sellerService.getSellerToken().officeAddress;
   }
 }

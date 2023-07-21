@@ -6,4 +6,9 @@ export interface Seller {
     email: string;
     password: string;
     role: string;
+    balance: number;
+    holderName?: string;
+    accountNumber?: string;
+    bankName?: string;
+    branchName?: string;
 }

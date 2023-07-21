@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
+import { Withdrawal } from '../interfaces/withdrawal';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,12 @@ export class SellerService {
     return this.http.post<Seller>(this.baseUrl.concat('/signup'), seller);
   }
 
-  getSeller(): Seller {
+  getSellerToken(): Seller {
     return JSON.parse(localStorage.getItem('seller-token') || '{}');
+  }
+
+  getSeller(): Observable<Seller> {
+    return this.http.get<Seller>(this.baseUrl.concat('/') + this.getSellerToken().id);
   }
 
   getProduct(id: number): Observable<Product> {
@@ -34,7 +39,7 @@ export class SellerService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl.concat('/products/') + this.getSeller().id);
+    return this.http.get<Product[]>(this.baseUrl.concat('/products/') + this.getSellerToken().id);
   }
 
   createProduct(product: Product): Observable<Product> {
@@ -63,5 +68,13 @@ export class SellerService {
 
   updateOrder(order: OrderDetails): Observable<boolean> {
     return this.http.put<boolean>(this.baseUrl.concat('/order'), order);
+  }
+
+  requestWithdraw(withdrawal: Withdrawal) {
+    return this.http.post<Withdrawal>(this.baseUrl.concat('/withdraw'), withdrawal);
+  }
+
+  getWithdrawals() {
+    return this.http.get<Withdrawal[]>(this.baseUrl.concat('/withdrawals/') + this.getSellerToken().id);
   }
 }
