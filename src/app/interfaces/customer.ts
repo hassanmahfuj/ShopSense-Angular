@@ -5,4 +5,5 @@ export interface Customer {
     password: string;
     role: string;
     address: string;
+    status: string;
 }

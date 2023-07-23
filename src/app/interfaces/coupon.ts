@@ -3,4 +3,5 @@ export interface Coupon {
     couponCode: string;
     couponValue: number;
     couponType: string;
+    status: string;
 }

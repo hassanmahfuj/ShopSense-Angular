@@ -5,6 +5,8 @@ import { Admin } from '../interfaces/admin';
 import { WithdrawalAdmin } from '../interfaces/withdrawal-admin';
 import { Product } from '../interfaces/product';
 import { Seller } from '../interfaces/seller';
+import { Customer } from '../interfaces/customer';
+import { Coupon } from '../interfaces/coupon';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,14 @@ export class AdminService {
 
   updateSeller(a: Seller): Observable<Seller> {
     return this.http.put<Seller>(this.baseUrl.concat('/seller'), a);
+  }
+
+  getAllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.baseUrl.concat('/customers'));
+  }
+
+  updateCustomer(a: Customer): Observable<Customer> {
+    return this.http.put<Customer>(this.baseUrl.concat('/customer'), a);
   }
 
   getWithdrawals(): Observable<WithdrawalAdmin[]> {
