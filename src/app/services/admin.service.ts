@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin } from '../interfaces/admin';
 import { WithdrawalAdmin } from '../interfaces/withdrawal-admin';
+import { Product } from '../interfaces/product';
+import { Seller } from '../interfaces/seller';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,23 @@ export class AdminService {
   }
 
   getAdmin(): Admin {
-    return JSON.parse(localStorage.getItem('admin-token') || '{}');    
+    return JSON.parse(localStorage.getItem('admin-token') || '{}');
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl.concat('/products'));
+  }
+
+  updateProduct(p: Product): Observable<Product> {
+    return this.http.put<Product>(this.baseUrl.concat('/product'), p);
+  }
+
+  getAllSellers(): Observable<Seller[]> {
+    return this.http.get<Seller[]>(this.baseUrl.concat('/sellers'));
+  }
+
+  updateSeller(a: Seller): Observable<Seller> {
+    return this.http.put<Seller>(this.baseUrl.concat('/seller'), a);
   }
 
   getWithdrawals(): Observable<WithdrawalAdmin[]> {

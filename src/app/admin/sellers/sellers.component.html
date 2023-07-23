@@ -1,1 +1,44 @@
-<p>sellers works!</p>
+<div class="page-content">
+    <h3>Sellers</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Store Name</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of sellers; let i = index">
+                            <td>{{a.id}}</td>
+                            <td>{{a.name}}</td>
+                            <td>{{a.email}}</td>
+                            <td>{{a.storeName}}</td>
+                            <td>{{a.balance}}</td>
+                            <td>
+                                <div [class]="a.status=='Inactive' ? 'text-danger bg-light-danger' : a.status=='Active' ? 'text-success bg-light-success' : 'text-warning bg-light-warning'"
+                                    class="badge rounded-pill p-2 text-uppercase px-3">
+                                    <i class='bx bxs-circle me-1'></i>{{a.status}}
+                                </div>
+                            </td>
+                            <td>
+                                <select #_status class="form-select" name="actions" id="actions" (change)="updateProduct(a, _status.value)">
+                                    <option [selected]="a.status=='Pending'" value="Pending">Pending</option>
+                                    <option [selected]="a.status=='Active'" value="Active">Active</option>
+                                    <option [selected]="a.status=='Inactive'" value="Inactive">Inactive</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,4 +11,5 @@ export interface Seller {
     accountNumber?: string;
     bankName?: string;
     branchName?: string;
+    status?: string;
 }
