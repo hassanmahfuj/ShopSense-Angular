@@ -7,6 +7,7 @@ import { Product } from '../interfaces/product';
 import { Seller } from '../interfaces/seller';
 import { Customer } from '../interfaces/customer';
 import { Coupon } from '../interfaces/coupon';
+import { AdminStat } from '../interfaces/admin-stat';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,10 @@ export class AdminService {
 
   updateWithdraw(wa: WithdrawalAdmin): Observable<boolean> {
     return this.http.post<boolean>(this.baseUrl.concat('/withdraw'), wa);
+  }
+
+  // get stat
+  getStat(): Observable<AdminStat> {
+    return this.http.get<AdminStat>(this.baseUrl.concat('/stat'));
   }
 }

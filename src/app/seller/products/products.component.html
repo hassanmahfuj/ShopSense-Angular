@@ -29,7 +29,7 @@
                             </td>
                             <td>{{p.title}}</td>
                             <td>
-                                <div [class]="p.status=='Rejected' ? 'text-danger bg-light-danger' : p.status=='Pending' ? 'text-warning bg-light-warning' : 'text-success bg-light-success'"
+                                <div [class]="p.status=='Inactive' ? 'text-danger bg-light-danger' : p.status=='Pending' ? 'text-warning bg-light-warning' : 'text-success bg-light-success'"
                                     class="badge rounded-pill p-2 text-uppercase px-3">
                                     <i class='bx bxs-circle me-1'></i>{{p.status}}
                                 </div>

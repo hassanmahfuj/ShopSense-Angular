@@ -6,6 +6,7 @@ import { Product } from '../interfaces/product';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
 import { Withdrawal } from '../interfaces/withdrawal';
+import { SellerStat } from '../interfaces/seller-stat';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,10 @@ export class SellerService {
 
   getWithdrawals() {
     return this.http.get<Withdrawal[]>(this.baseUrl.concat('/withdrawals/') + this.getSellerToken().id);
+  }
+
+  // get stat
+  getStat(): Observable<SellerStat> {
+    return this.http.get<SellerStat>(this.baseUrl.concat('/stat?sellerId=') + this.getSellerToken().id);
   }
 }

@@ -151,7 +151,7 @@ export class CheckoutComponent {
       if (coupon != null) {
         if (coupon.couponType == 'Flat') {
           this.discount = coupon.couponValue;
-          this.discountReason = "(" + coupon.couponType + " " + coupon.couponValue;
+          this.discountReason = "(" + coupon.couponType + " " + coupon.couponValue + ")";
         } else {
           this.discount = this.cartTotal * (coupon.couponValue / 100);
           this.discountReason = "(" + coupon.couponValue + "%)";
