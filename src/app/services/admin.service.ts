@@ -6,7 +6,6 @@ import { WithdrawalAdmin } from '../interfaces/withdrawal-admin';
 import { Product } from '../interfaces/product';
 import { Seller } from '../interfaces/seller';
 import { Customer } from '../interfaces/customer';
-import { Coupon } from '../interfaces/coupon';
 import { AdminStat } from '../interfaces/admin-stat';
 
 @Injectable({
