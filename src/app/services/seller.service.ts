@@ -7,6 +7,7 @@ import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
 import { Withdrawal } from '../interfaces/withdrawal';
 import { SellerStat } from '../interfaces/seller-stat';
+import { ReportSales } from '../interfaces/report-sales';
 
 @Injectable({
   providedIn: 'root'
@@ -82,5 +83,15 @@ export class SellerService {
   // get stat
   getStat(): Observable<SellerStat> {
     return this.http.get<SellerStat>(this.baseUrl.concat('/stat?sellerId=') + this.getSellerToken().id);
+  }
+
+  getSalesReport(startDate: string, endDate: string): Observable<ReportSales[]> {
+    return this.http.get<ReportSales[]>(this.baseUrl.concat('/report/sales'), {
+      params: {
+        sellerId: this.getSellerToken().id,
+        startDate,
+        endDate
+      }
+    });
   }
 }

@@ -11,6 +11,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { StoreComponent } from './store/store.component';
+import { ReportSalesComponent } from './report-sales/report-sales.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: "orders", component: OrdersComponent },
       { path: "order/:id", component: OrderDetailsComponent },
       { path: "withdraw", component: WithdrawComponent },
-      { path: "store", component: StoreComponent }
+      { path: "store", component: StoreComponent },
+      { path: "report/sales", component: ReportSalesComponent }
     ]
   },
   { path: "auth", component: AuthComponent }

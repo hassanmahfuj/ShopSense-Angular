@@ -19,6 +19,8 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "chart.js": "^4.3.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.31",
     "ng-angular-popup": "^0.4.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

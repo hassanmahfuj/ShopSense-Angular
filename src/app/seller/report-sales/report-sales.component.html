@@ -1,0 +1,48 @@
+<div class="page-content">
+    <div class="d-flex align-items-end gap-3 mb-3">
+        <h3 class="m-0">Sales Report</h3>
+        <div class="ms-auto">
+            <label>From</label>
+            <input class="form-control" type="date" name="startDate" [(ngModel)]="startDate">
+        </div>
+        <div>
+            <label>To</label>
+            <input class="form-control" type="date" name="endDate" [(ngModel)]="endDate">
+        </div>
+        <button class="btn btn-primary" (click)="getReport()">Search</button>
+        <button class="btn btn-danger" (click)="generatePdf()">Print</button>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered" id="dataTable">
+                <thead class="table-warning">
+                    <tr>
+                        <th>Date</th>
+                        <th>Items</th>
+                        <th>Revenue</th>
+                        <th>Costs</th>
+                        <th>Profit</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let r of report">
+                        <td>{{ r.date }}</td>
+                        <td>{{ r.items }}</td>
+                        <td class="text-end">{{ r.revenue | number: '1.2-2' }}</td>
+                        <td class="text-end">{{ r.costs | number: '1.2-2' }}</td>
+                        <td class="text-end">{{ r.profit | number: '1.2-2' }}</td>
+                    </tr>
+
+                </tbody>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th colspan="2" class="text-end">Total</th>
+                        <th class="text-end">{{ totalRevenue | number: '1.2-2' }}</th>
+                        <th class="text-end">{{ totalCosts | number: '1.2-2' }}</th>
+                        <th class="text-end">{{ totalProfit | number: '1.2-2' }}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
