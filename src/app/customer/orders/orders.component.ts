@@ -26,4 +26,8 @@ export class OrdersComponent implements OnInit {
   showDetails(id: any) {
     this.router.navigate(['customer/order', id]);
   }
+
+  showInvoice(id: any) {
+    this.router.navigate(['../invoice', id]);
+  }
 }
