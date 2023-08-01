@@ -47,6 +47,13 @@ export class CheckoutComponent {
 
   orderTotal: number = 0;
 
+  homeDelivery: boolean = true;
+  collectionPoint: boolean = false;
+
+  today: Date = new Date();
+  currentDate: string = new Date().toISOString().substring(0, 10);
+  deliveryDate: string = new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDay() + 3).toISOString().substring(0, 10);
+
   constructor(
     private customerService: CustomerService,
     private router: Router,
@@ -84,12 +91,7 @@ export class CheckoutComponent {
   }
 
   placeOrder() {
-    const currentDate: Date = new Date();
-    const delivaryDate = new Date(currentDate);
-    delivaryDate.setDate(currentDate.getDate() + 3);
-
     if (this.validate()) {
-
       const orderDetails: OrderDetails[] = [];
       for (let item of this.cartItems) {
         let orderDetail: OrderDetails = {
@@ -102,13 +104,13 @@ export class CheckoutComponent {
           status: 'Pending',
           quantity: item.productQuantity,
           subTotal: item.subTotal,
-          deliveryDate: delivaryDate.toISOString()
+          deliveryDate: this.deliveryDate
         }
         orderDetails.push(orderDetail);
       }
 
       const order: Order = {
-        orderDate: currentDate.toISOString(),
+        orderDate: this.currentDate,
         orderTotal: this.orderTotal,
         customerId: this.customerService.getCustomer().id,
         discount: this.discount,
@@ -225,6 +227,23 @@ export class CheckoutComponent {
       }
     }
     this.shippingState = this._state.nativeElement.options[this._state.nativeElement.selectedIndex].text;
+  }
+
+  onShippingSelected(type: string) {
+    this.homeDelivery = false;
+    this.collectionPoint = false;
+
+    if (type == 'h') {
+      this.homeDelivery = true;
+    }
+
+    if (type == 'c') {
+      this.collectionPoint = true;
+    }
+  }
+
+  onCollectionSelect(pos: string) {
+
   }
 
   selectedDistricts: any = [];

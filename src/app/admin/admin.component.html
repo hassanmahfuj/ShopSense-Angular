@@ -65,6 +65,28 @@
                 <div class="menu-title">Customers</div>
             </a>
         </li>
+        <li class="menu-label">Logistics</li>
+        <li>
+            <a routerLink="orders">
+                <div class="parent-icon"><i class='bx bx-list-ul'></i>
+                </div>
+                <div class="menu-title">Orders</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="orders/shipped">
+                <div class="parent-icon"><i class='bx bxs-truck'></i>
+                </div>
+                <div class="menu-title">Ready to Deliver</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="collection">
+                <div class="parent-icon"><i class='bx bx-store-alt'></i>
+                </div>
+                <div class="menu-title">Collection Points</div>
+            </a>
+        </li>
         <li class="menu-label">Account</li>
         <li (click)="onAdminLogout()">
             <a class="cursor-pointer">

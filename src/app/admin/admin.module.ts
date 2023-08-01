@@ -12,6 +12,10 @@ import { CustomersComponent } from './customers/customers.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrdersShippedComponent } from './orders-shipped/orders-shipped.component';
+import { CollectionPointsComponent } from './collection-points/collection-points.component';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { CouponsComponent } from './coupons/coupons.component';
     CustomersComponent,
     WithdrawComponent,
     CategoriesComponent,
-    CouponsComponent
+    CouponsComponent,
+    OrdersComponent,
+    OrderDetailsComponent,
+    OrdersShippedComponent,
+    CollectionPointsComponent
   ],
   imports: [
     CommonModule,

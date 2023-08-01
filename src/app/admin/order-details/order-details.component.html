@@ -34,12 +34,16 @@
                             </td>
                             <td>
                                 <select #_status class="form-select" name="actions" id="actions"
-                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status=='Shipped' || p.status=='Delivered'">
-                                    <option [selected]="p.status=='Pending'" value="Pending">Pending</option>
-                                    <option [selected]="p.status=='Canceled'" value="Canceled">Canceled</option>
-                                    <option [selected]="p.status=='Processing'" value="Processing">Processing</option>
-                                    <option [selected]="p.status=='Shipped'" value="Shipped">Shipped</option>
-                                    <option *ngIf="p.status=='Delivered'" [selected]="p.status=='Delivered'" value="Delivered">Delivered</option>
+                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status !='Shipped'">
+                                    <option *ngIf="p.status=='Pending'" [selected]="p.status=='Pending'"
+                                        value="Pending">Pending</option>
+                                    <option *ngIf="p.status=='Canceled'" [selected]="p.status=='Canceled'"
+                                        value="Canceled">Canceled</option>
+                                    <option *ngIf="p.status=='Processing'" [selected]="p.status=='Processing'"
+                                        value="Processing">Processing</option>
+                                    <option *ngIf="p.status=='Shipped'" [selected]="p.status=='Shipped'"
+                                        value="Shipped">Shipped</option>
+                                    <option [selected]="p.status=='Delivered'" value="Delivered">Delivered</option>
                                 </select>
                             </td>
                         </tr>
@@ -87,7 +91,7 @@
                             <tr>
                                 <th>Discount</th>
                                 <td class="text-end">৳{{order.discount.toFixed(2)}}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>Total</th>
                                 <td class="text-end"><strong>৳{{order.orderTotal.toFixed(2)}}</strong></td>

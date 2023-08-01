@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { OrderDetails } from 'src/app/interfaces/order-details';
-import { SellerService } from 'src/app/services/seller.service';
+import { AdminService } from 'src/app/services/admin.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -9,20 +9,19 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.css']
 })
-export class OrderDetailsComponent implements OnInit {
-
+export class OrderDetailsComponent {
   order: any;
   orderDetails: OrderDetails[] = [];
 
   constructor(
-    private sellerService: SellerService,
+    private adminService: AdminService,
     private route: ActivatedRoute,
     private util: UtilService
   ) { }
 
   ngOnInit(): void {
     const orderId = this.route.snapshot.params["id"];
-    this.sellerService.getOrder(orderId, this.sellerService.getSellerToken().id).subscribe((order) => {
+    this.adminService.getOrder(orderId).subscribe((order) => {
       this.order = order;
       for (const item of order.orderDetails) {
         this.orderDetails.push(item);
@@ -36,7 +35,7 @@ export class OrderDetailsComponent implements OnInit {
     if(o.status == 'Delivered') {
       o.deliveryDate = new Date().toISOString();
     }
-    this.sellerService.updateOrder(o).subscribe((success) => {
+    this.adminService.updateOrder(o).subscribe((success) => {
       this.util.toastify(success, "Order " + status);
     });
   }

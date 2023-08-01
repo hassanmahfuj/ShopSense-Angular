@@ -10,6 +10,10 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrdersShippedComponent } from './orders-shipped/orders-shipped.component';
+import { CollectionPointsComponent } from './collection-points/collection-points.component';
 
 const routes: Routes = [
   {
@@ -22,7 +26,11 @@ const routes: Routes = [
       { path: "withdraw", component: WithdrawComponent },
       { path: "customers", component: CustomersComponent },
       { path: "categories", component: CategoriesComponent },
-      { path: "coupons", component: CouponsComponent }
+      { path: "coupons", component: CouponsComponent },
+      { path: "orders", component: OrdersComponent },
+      { path: "order/:id", component: OrderDetailsComponent },
+      { path: "orders/shipped", component: OrdersShippedComponent },
+      { path: "collection", component: CollectionPointsComponent }
     ]
   },
   { path: "auth", component: AuthComponent }

@@ -7,6 +7,8 @@ import { Product } from '../interfaces/product';
 import { Seller } from '../interfaces/seller';
 import { Customer } from '../interfaces/customer';
 import { AdminStat } from '../interfaces/admin-stat';
+import { Order } from '../interfaces/order';
+import { OrderDetails } from '../interfaces/order-details';
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +62,23 @@ export class AdminService {
   // get stat
   getStat(): Observable<AdminStat> {
     return this.http.get<AdminStat>(this.baseUrl.concat('/stat'));
+  }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl.concat('/orders'));
+  }
+
+  getOrder(orderId: number): Observable<Order> {
+    return this.http.get<Order>(this.baseUrl.concat('/order'), {
+      params: { "orderid": orderId }
+    });
+  }
+
+  updateOrder(order: OrderDetails): Observable<boolean> {
+    return this.http.put<boolean>(this.baseUrl.concat('/order'), order);
+  }
+
+  getShippedOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl.concat('/orders/shipped'));
   }
 }
