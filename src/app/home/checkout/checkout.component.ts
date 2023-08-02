@@ -1,8 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cart-item';
+import { CollectionPoint } from 'src/app/interfaces/collection-point';
 import { Order } from 'src/app/interfaces/order';
 import { OrderDetails } from 'src/app/interfaces/order-details';
+import { CollectionPointService } from 'src/app/services/collection-point.service';
 import { CouponService } from 'src/app/services/coupon.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -49,6 +51,7 @@ export class CheckoutComponent {
 
   homeDelivery: boolean = true;
   collectionPoint: boolean = false;
+  collectionPoints: CollectionPoint[] = [];
 
   today: Date = new Date();
   currentDate: string = new Date().toISOString().substring(0, 10);
@@ -58,7 +61,8 @@ export class CheckoutComponent {
     private customerService: CustomerService,
     private router: Router,
     private util: UtilService,
-    private couponService: CouponService
+    private couponService: CouponService,
+    private collectionPointService: CollectionPointService
   ) { }
 
   ngOnInit(): void {
@@ -216,6 +220,7 @@ export class CheckoutComponent {
     }
     this.calcOrderTotal();
     this.shippingCity = this._city.nativeElement.options[this._city.nativeElement.selectedIndex].text;
+    this.getCollectionPoint();
   }
 
   onDivisionSelect(id: any) {
@@ -239,11 +244,29 @@ export class CheckoutComponent {
 
     if (type == 'c') {
       this.collectionPoint = true;
+      this.getCollectionPoint();
     }
   }
 
-  onCollectionSelect(pos: string) {
+  getCollectionPoint() {
+    this.collectionPointService.readByDistrict(this.shippingCity).subscribe(res => {
+      this.collectionPoints = res;
+    });
+  }
 
+  onCollectionSelect(pos: any) {
+    console.log(pos);
+    
+    this.shippingPostCode = ' ';
+    this.shippingStreet = '';
+    if (pos == -1) {
+      this.shippingCharge = 150;
+      this.calcOrderTotal();
+    } else {
+      this.shippingCharge = 15;
+      this.calcOrderTotal();
+      this.shippingStreet = this.collectionPoints[pos].address;
+    }
   }
 
   selectedDistricts: any = [];
