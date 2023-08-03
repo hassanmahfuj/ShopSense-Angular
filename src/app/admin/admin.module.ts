@@ -16,6 +16,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersShippedComponent } from './orders-shipped/orders-shipped.component';
 import { CollectionPointsComponent } from './collection-points/collection-points.component';
+import { ReportSalesComponent } from './report-sales/report-sales.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CollectionPointsComponent } from './collection-points/collection-points
     OrdersComponent,
     OrderDetailsComponent,
     OrdersShippedComponent,
-    CollectionPointsComponent
+    CollectionPointsComponent,
+    ReportSalesComponent
   ],
   imports: [
     CommonModule,

@@ -14,6 +14,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersShippedComponent } from './orders-shipped/orders-shipped.component';
 import { CollectionPointsComponent } from './collection-points/collection-points.component';
+import { ReportSalesComponent } from './report-sales/report-sales.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: "orders", component: OrdersComponent },
       { path: "order/:id", component: OrderDetailsComponent },
       { path: "orders/shipped", component: OrdersShippedComponent },
-      { path: "collection", component: CollectionPointsComponent }
+      { path: "collection", component: CollectionPointsComponent },
+      { path: "report/sales", component: ReportSalesComponent }
     ]
   },
   { path: "auth", component: AuthComponent }

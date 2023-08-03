@@ -9,6 +9,7 @@ import { Customer } from '../interfaces/customer';
 import { AdminStat } from '../interfaces/admin-stat';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
+import { ReportSales } from '../interfaces/report-sales';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +81,14 @@ export class AdminService {
 
   getShippedOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.baseUrl.concat('/orders/shipped'));
+  }
+
+  getSalesReport(startDate: string, endDate: string): Observable<ReportSales[]> {
+    return this.http.get<ReportSales[]>(this.baseUrl.concat('/report/sales'), {
+      params: {
+        startDate,
+        endDate
+      }
+    });
   }
 }
