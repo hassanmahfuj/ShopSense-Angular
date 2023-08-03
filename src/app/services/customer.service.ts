@@ -6,6 +6,7 @@ import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
+import { Wishlist } from '../interfaces/wishlist';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = 'http://localhost:8080/customer';
+  private host: string = 'http://localhost:8080';
+
+  private baseUrl: string = this.host.concat('/customer');
 
   private parentMethodCallSource = new Subject<any>();
 
@@ -86,5 +89,18 @@ export class CustomerService {
     return this.http.get<OrderDetails>(this.baseUrl.concat('/track'), {
       params: { "id": id }
     });
+  }
+
+
+  addToWishlist(wishlist: Wishlist): Observable<boolean> {
+    return this.http.post<boolean>(this.host.concat('/wishlist/add'), wishlist);
+  }
+
+  removeFromWishlist(wishlist: Wishlist): Observable<boolean> {
+    return this.http.post<boolean>(this.host.concat('/wishlist/remove'), wishlist);
+  }
+
+  isWishlisted(wishlist: Wishlist): Observable<boolean> {
+    return this.http.post<boolean>(this.host.concat('/wishlist/check'), wishlist);
   }
 }
