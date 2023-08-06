@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { TrackOrderComponent } from './track-order/track-order.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TrackOrderComponent } from './track-order/track-order.component';
     OrdersComponent,
     AddressesComponent,
     OrderDetailsComponent,
-    TrackOrderComponent
+    TrackOrderComponent,
+    WishlistComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-body">
+        <h3>Wishlist</h3>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>View Details</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of wishlists">
+                        <td>{{p.title}}</td>
+                        <td>{{p.salePrice}}</td>
+                        <td>{{p.stockStatus}}</td>
+                        <td>
+                            <button type="button" (click)="showDetails(p.productId)"
+                                class="btn btn-primary btn-sm radius-30 px-4">View Details</button>
+                        </td>
+                        <td>
+                            <button type="button" (click)="removeFromWishlist(p)"
+                                class="btn btn-danger btn-sm radius-30 px-4">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
