@@ -7,6 +7,7 @@ import { CartItem } from '../interfaces/cart-item';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
 import { Wishlist } from '../interfaces/wishlist';
+import { Review } from '../interfaces/review';
 
 @Injectable({
   providedIn: 'root'
@@ -102,5 +103,19 @@ export class CustomerService {
 
   isWishlisted(wishlist: Wishlist): Observable<boolean> {
     return this.http.post<boolean>(this.host.concat('/wishlist/check'), wishlist);
+  }
+
+  getReviews(productId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(this.host.concat('/review?productId=') + productId);
+  }
+
+  isProductPurchased(productId: number): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl.concat('/check-purchased'), {
+      params: { productId, customerId: this.getCustomer().id }
+    });
+  }
+
+  postReview(r: Review): Observable<boolean> {
+    return this.http.post<boolean>(this.host.concat('/review/add'), r);
   }
 }

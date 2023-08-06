@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cart-item';
 import { Product } from 'src/app/interfaces/product';
+import { Review } from 'src/app/interfaces/review';
 import { Wishlist } from 'src/app/interfaces/wishlist';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -27,9 +28,15 @@ export class ProductComponent implements OnInit {
     status: ''
   };
 
+  productId: number = 0;
   quantity: number = 1;
 
   isWishlisted: boolean = false;
+
+  isProductPurchased: boolean = false;
+  reviewStars: number = 3;
+  reviewComment: string = '';
+  reviews: Review[] = [];
 
   constructor(
     private customerService: CustomerService,
@@ -39,11 +46,15 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params['id'];
-    this.customerService.getProduct(id).subscribe((response) => {
+    this.productId = this.route.snapshot.params['id'];
+    this.customerService.getProduct(this.productId).subscribe((response) => {
       this.product = response;
       this.getIsWishlisted();
     });
+    this.customerService.isProductPurchased(this.productId).subscribe(res => {
+      this.isProductPurchased = res;
+    });
+    this.getReviews();
   }
 
   quantityChange(decrease: boolean): void {
@@ -102,6 +113,31 @@ export class ProductComponent implements OnInit {
     }
     this.customerService.isWishlisted(w).subscribe(res => {
       this.isWishlisted = res;
+    });
+  }
+
+  setReviewStars(star: number) {
+    this.reviewStars = star;
+  }
+
+  getReviews() {
+    this.customerService.getReviews(this.productId).subscribe(res => {
+      this.reviews = res;
+    });
+  }
+
+  postReview() {
+    let r: Review = {
+      reviewId: 0,
+      customerId: this.customerService.getCustomer().id,
+      customerName: this.customerService.getCustomer().name,
+      productId: this.productId,
+      star: this.reviewStars,
+      comment: this.reviewComment
+    }
+    this.customerService.postReview(r).subscribe(res => {
+      this.util.toastify(res, "Review Posted");
+      this.getReviews();
     });
   }
 }
