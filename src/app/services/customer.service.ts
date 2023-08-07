@@ -118,4 +118,8 @@ export class CustomerService {
   postReview(r: Review): Observable<boolean> {
     return this.http.post<boolean>(this.host.concat('/review/add'), r);
   }
+
+  getSearchProducts(q: string): Observable<Product[]> {
+    return this.http.get<Product[]>(this.host.concat('/search'), { params: { q } });
+  }
 }

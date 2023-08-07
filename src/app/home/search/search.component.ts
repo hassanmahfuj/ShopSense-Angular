@@ -1,21 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
-  constructor(private route: ActivatedRoute) { }
+  searchQuery: any;
+  searchProducts: Product[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private customerService: CustomerService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    // let searchQuery = this.route.snapshot.params['query'];
-    let searchQuery1 = this.route.snapshot.queryParams['p'];
-    console.log(searchQuery1);
-
+    this.route.queryParams.subscribe(params => {
+      this.searchQuery = params['query'];
+      this.getProducts();
+    });
   }
 
+  getProducts() {
+    this.customerService.getSearchProducts(this.searchQuery).subscribe(res => {
+      this.searchProducts = res;
+      console.log(res);
 
+    });
+  }
+
+  showProduct(id: number): void {
+    this.router.navigate(['product/' + id]);
+  }
+
+  getDiscountPercentage(p: Product): string {
+    const discountAmount = p.regularPrice - p.salePrice;
+    const discountPercentage = (discountAmount / p.regularPrice) * 100;
+    return '-' + discountPercentage.toFixed(0) + '%';
+  }
 }

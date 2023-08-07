@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   search(): void {
-    this.router.navigate(['search']);
+    const queryParams = { query: this.searchQuery };
+    this.router.navigate(['search'], { queryParams });
   }
 
   getCartItems() {

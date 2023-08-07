@@ -138,6 +138,8 @@ export class ProductComponent implements OnInit {
     this.customerService.postReview(r).subscribe(res => {
       this.util.toastify(res, "Review Posted");
       this.getReviews();
+      this.reviewStars = 3;
+      this.reviewComment = '';
     });
   }
 }
