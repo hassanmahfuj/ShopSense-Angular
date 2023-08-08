@@ -12,7 +12,10 @@
         </div>
         <div class="row mb-3">
             <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mb-0">Email (<span *ngIf="emailVerified" class="text-success">Verified</span>
+                    <span data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="!emailVerified"
+                        class="text-danger cursor-pointer">Not verified</span>)
+                </h6>
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" [(ngModel)]="email" />
@@ -30,6 +33,29 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-9 text-secondary">
                 <input type="button" class="btn btn-primary px-4" value="Save Changes" />
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verify Email</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input *ngIf="!emailVerifiedNotifyModal" type="text" class="form-control"
+                            placeholder="Enter Verification Code" name="verificationCode"
+                            [(ngModel)]="verificationCode">
+                        <h2 *ngIf="emailVerifiedNotifyModal" class="text-center p-3">Your email is verified!</h2>
+                    </div>
+                    <div *ngIf="!emailVerifiedNotifyModal" class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="sendVerificationCode()">Send
+                            Verification Code</button>
+                        <button type="button" class="btn btn-primary" (click)="verifyCode()">Verify</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

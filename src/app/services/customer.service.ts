@@ -40,6 +40,10 @@ export class CustomerService {
     return JSON.parse(localStorage.getItem('customer-token') || '{}');
   }
 
+  getCustomer1(): Observable<Customer> {
+    return this.http.get<Customer>(this.baseUrl.concat('/') + this.getCustomer().id);
+  }
+
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(this.baseUrl.concat('/product/') + id);
   }
@@ -121,5 +125,18 @@ export class CustomerService {
 
   getSearchProducts(q: string): Observable<Product[]> {
     return this.http.get<Product[]>(this.host.concat('/search'), { params: { q } });
+  }
+
+  sendVerificationCode(c: Customer): Observable<boolean> {
+    return this.http.post<boolean>(this.baseUrl.concat('/send-code'), c);
+  }
+
+  verifyCode(code: number): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl.concat('/verify-code'), {
+      params: {
+        userId: this.getCustomer().id,
+        code
+      }
+    });
   }
 }

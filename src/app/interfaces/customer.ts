@@ -6,4 +6,5 @@ export interface Customer {
     role: string;
     address: string;
     status: string;
+    emailVerified: boolean;
 }
