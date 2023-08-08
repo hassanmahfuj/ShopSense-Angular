@@ -38,6 +38,8 @@ export class ProductComponent implements OnInit {
   reviewComment: string = '';
   reviews: Review[] = [];
 
+  avgStar: number = 0;
+
   constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
@@ -123,6 +125,15 @@ export class ProductComponent implements OnInit {
   getReviews() {
     this.customerService.getReviews(this.productId).subscribe(res => {
       this.reviews = res;
+
+      // generating avg star
+      let totalStar = 0;
+      let givenStar = 0;
+      for (let r of this.reviews) {
+        totalStar += 5;
+        givenStar += r.star;
+      }
+      this.avgStar = givenStar / totalStar * 100;
     });
   }
 

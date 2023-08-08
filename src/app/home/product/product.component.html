@@ -23,13 +23,13 @@
                         <h4 class="card-title">{{product.title}}</h4>
                         <div class="d-flex gap-3 py-3">
                             <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
+                                <i class="bx bxs-star {{avgStar >= 20 ? 'text-warning' : 'text-secondary'}}"></i>
+                                <i class="bx bxs-star {{avgStar >= 40 ? 'text-warning' : 'text-secondary'}}"></i>
+                                <i class="bx bxs-star {{avgStar >= 60 ? 'text-warning' : 'text-secondary'}}"></i>
+                                <i class="bx bxs-star {{avgStar >= 80 ? 'text-warning' : 'text-secondary'}}"></i>
+                                <i class="bx bxs-star {{avgStar >= 100 ? 'text-warning' : 'text-secondary'}}"></i>
                             </div>
-                            <div>142 reviews</div>
+                            <div>{{reviews.length}} reviews</div>
                             <div class="text-success"><i class='bx bxs-cart-alt align-middle'></i> 134 orders
                             </div>
                         </div>
@@ -170,16 +170,22 @@
                                 <div class="d-flex mb-2">
                                     <h3 class="me-auto">Add a review</h3>
                                     <div class="cursor-pointer me-2">
-                                        <i class="bx bxs-star fs-2 {{reviewStars > 0 ? 'text-warning' : 'text-secondary'}}" (click)="setReviewStars(1)"></i>
-                                        <i class="bx bxs-star fs-2 {{reviewStars > 1 ? 'text-warning' : 'text-secondary'}}" (click)="setReviewStars(2)"></i>
-                                        <i class="bx bxs-star fs-2 {{reviewStars > 2 ? 'text-warning' : 'text-secondary'}}" (click)="setReviewStars(3)"></i>
-                                        <i class="bx bxs-star fs-2 {{reviewStars > 3 ? 'text-warning' : 'text-secondary'}}" (click)="setReviewStars(4)"></i>
-                                        <i class="bx bxs-star fs-2 {{reviewStars > 4 ? 'text-warning' : 'text-secondary'}}" (click)="setReviewStars(5)"></i>
+                                        <i class="bx bxs-star fs-2 {{reviewStars > 0 ? 'text-warning' : 'text-secondary'}}"
+                                            (click)="setReviewStars(1)"></i>
+                                        <i class="bx bxs-star fs-2 {{reviewStars > 1 ? 'text-warning' : 'text-secondary'}}"
+                                            (click)="setReviewStars(2)"></i>
+                                        <i class="bx bxs-star fs-2 {{reviewStars > 2 ? 'text-warning' : 'text-secondary'}}"
+                                            (click)="setReviewStars(3)"></i>
+                                        <i class="bx bxs-star fs-2 {{reviewStars > 3 ? 'text-warning' : 'text-secondary'}}"
+                                            (click)="setReviewStars(4)"></i>
+                                        <i class="bx bxs-star fs-2 {{reviewStars > 4 ? 'text-warning' : 'text-secondary'}}"
+                                            (click)="setReviewStars(5)"></i>
                                     </div>
                                     <button class="btn btn-primary" (click)="postReview()">Post Review</button>
                                 </div>
                                 <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"
-                                    placeholder="Write your experience with this product" [(ngModel)]="reviewComment"></textarea>
+                                    placeholder="Write your experience with this product"
+                                    [(ngModel)]="reviewComment"></textarea>
                             </div>
                             <h2 class="mt-3">Reviews</h2>
                             <p *ngIf="reviews.length == 0">No reviews found!</p>
