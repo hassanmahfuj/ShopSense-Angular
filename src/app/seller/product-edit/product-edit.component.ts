@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
 import { Product } from 'src/app/interfaces/product';
 import { CategoryService } from 'src/app/services/category.service';
+import { FileService } from 'src/app/services/file.service';
 import { SellerService } from 'src/app/services/seller.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -29,7 +30,8 @@ export class ProductEditComponent implements OnInit {
     private sellerService: SellerService,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private util: UtilService
+    private util: UtilService,
+    private fileService: FileService
   ) { }
 
 
@@ -53,8 +55,25 @@ export class ProductEditComponent implements OnInit {
 
   updateProduct(product: Product): void {
     product.id = this.id;
+    product.thumbnailUrl = this.thumbnailUrl;
     this.sellerService.updateProduct(product).subscribe((response) => {
       this.util.toastify(response, "Product Updated");
     });
+  }
+
+  onSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      this.fileService.uploadFile(formData).subscribe(res => {
+        if (res.status == "success") {
+          this.util.toastify(true, "Image Uploaded Successfully");
+          this.thumbnailUrl = res.fileUrl;
+        } else {
+          this.util.toastify(false);
+        }
+      });
+    }
   }
 }

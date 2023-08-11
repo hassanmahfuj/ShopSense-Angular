@@ -3,11 +3,11 @@
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4 border-end">
-                    <img src="./assets/images/products/{{product.thumbnailUrl}}" class="img-fluid" alt="...">
+                    <img src="{{ host + product.thumbnailUrl }}" class="img-fluid" alt="...">
                     <!-- <img src="../../../assets/images/products/{{product.thumbnailUrl}}" class="img-fluid" alt="..."> -->
                     <div class="row mb-3 row-cols-auto g-2 justify-content-center mt-3">
-                        <div class="col"><img src="./assets/images/products/{{product.thumbnailUrl}}" width="70"
-                                class="border rounded cursor-pointer" alt=""></div>
+                        <div class="col"><img src="{{ host + product.thumbnailUrl }}"
+                                width="70" class="border rounded cursor-pointer" alt=""></div>
                         <!-- <div class="col"><img src="assets/images/products/11.png" width="70"
                                 class="border rounded cursor-pointer" alt=""></div>
                         <div class="col"><img src="assets/images/products/14.png" width="70"

@@ -15,8 +15,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductThumbnail" class="form-label">Thumbnail Url</label>
-                                    <input type="text" class="form-control" id="inputProductThumbnail"
-                                        placeholder="Enter thumbnail url" name="thumbnailUrl" ngModel>
+                                    <input type="file" class="form-control" id="inputProductThumbnail"
+                                        placeholder="Enter thumbnail url" name="thumbnailUrl"
+                                        (change)="onSelected($event)">
+                                    <span class="d-block mt-1 text-body-tertiary">
+                                        Uploaded url: {{ thumbnailUrl }}</span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label">Description</label>

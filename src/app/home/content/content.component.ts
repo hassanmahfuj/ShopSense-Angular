@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-content',
@@ -11,8 +12,13 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class ContentComponent implements OnInit {
 
   products: Product[] = [];
+  host: string = this.fileService.host;
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(
+    private customerService: CustomerService, 
+    private router: Router,
+    private fileService: FileService
+    ) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -21,6 +27,8 @@ export class ContentComponent implements OnInit {
   getProducts(): void {
     this.customerService.getProducts().subscribe((response) => {
       this.products = response;
+      console.log(response);
+      
     });
   }
 

@@ -5,6 +5,7 @@ import { Product } from 'src/app/interfaces/product';
 import { Review } from 'src/app/interfaces/review';
 import { Wishlist } from 'src/app/interfaces/wishlist';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FileService } from 'src/app/services/file.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -39,12 +40,14 @@ export class ProductComponent implements OnInit {
   reviews: Review[] = [];
 
   avgStar: number = 0;
+  host: string = this.fileService.host;
 
   constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
     private util: UtilService,
-    private router: Router
+    private router: Router,
+    private fileService: FileService
   ) { }
 
   ngOnInit(): void {

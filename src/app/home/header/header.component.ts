@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItem } from 'src/app/interfaces/cart-item';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-header',
@@ -18,10 +19,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   cartTotal: number = 0;
 
   private updateCart: Subscription;
+  host: string = this.fileService.host;
 
-  constructor(private customerService: CustomerService, private router: Router) {
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private fileService: FileService
+  ) {
     this.customerName = customerService.getCustomer().name;
-
     this.updateCart = customerService.parentMethodCalled$.subscribe(data => {
       this.getCartItems();
     });
