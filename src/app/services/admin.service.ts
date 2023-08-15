@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin } from '../interfaces/admin';
@@ -10,6 +10,8 @@ import { AdminStat } from '../interfaces/admin-stat';
 import { Order } from '../interfaces/order';
 import { OrderDetails } from '../interfaces/order-details';
 import { ReportSales } from '../interfaces/report-sales';
+import { AuthRequest } from '../interfaces/auth-request';
+import { AuthResponse } from '../interfaces/auth-response';
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +22,23 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  adminLogin(admin: Admin): Observable<Admin> {
-    return this.http.post<Admin>(this.baseUrl.concat('/login'), admin);
+  adminLogin(req: AuthRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.baseUrl.concat('/login'), req);
   }
 
   getAdmin(): Admin {
     return JSON.parse(localStorage.getItem('admin-token') || '{}');
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("admin-jwt")
+    })
+  };
+
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl.concat('/products'));
+    console.log(33);
+    return this.http.get<Product[]>(this.baseUrl.concat('/products'), this.httpOptions);
   }
 
   updateProduct(p: Product): Observable<Product> {
