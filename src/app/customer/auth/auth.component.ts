@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthRequest } from 'src/app/interfaces/auth-request';
+import { AuthResponse } from 'src/app/interfaces/auth-response';
 import { Customer } from 'src/app/interfaces/customer';
 import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -25,10 +27,15 @@ export class AuthComponent {
   }
 
   onCustomerLogin(customer: Customer): void {
-    this.customerService.customerLogin(customer).subscribe(
-      (customer: Customer) => {
-        if (customer != null) {
-          localStorage.setItem('customer-token', JSON.stringify(customer));
+    let req: AuthRequest = {
+      email: customer.email,
+      password: customer.password
+    }
+    this.customerService.customerLogin(req).subscribe(
+      (res: AuthResponse) => {
+        if (res.status == "success") {
+          localStorage.setItem('customer-jwt', res.token);
+          localStorage.setItem('customer-token', JSON.stringify(res.user));
           this.router.navigate(['customer']);
           this.util.toastify(true, "Successfully logged in");
         } else {

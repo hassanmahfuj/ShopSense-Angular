@@ -3,7 +3,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
             <div *ngFor="let p of searchProducts" class="col cursor-pointer" (click)="showProduct(p.id)">
                 <div class="card">
-                    <img src="assets/images/products/{{p.thumbnailUrl}}" class="card-img-top" alt="...">
+                    <img src="{{ host + p.thumbnailUrl }}" class="card-img-top" alt="...">
                     <div class="">
                         <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">{{getDiscountPercentage(p)}}</span></div>
                     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-search',
@@ -12,11 +13,13 @@ export class SearchComponent {
 
   searchQuery: any;
   searchProducts: Product[] = [];
+  host: string = this.fileService.host;
 
   constructor(
     private route: ActivatedRoute,
     private customerService: CustomerService,
-    private router: Router
+    private router: Router,
+    private fileService: FileService
   ) { }
 
   ngOnInit(): void {

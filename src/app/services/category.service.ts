@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../interfaces/category';
 import { Observable } from 'rxjs';
@@ -12,21 +12,28 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
+  getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("admin-jwt")
+    })
+  }
+
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrl.concat('/all'));
+    return this.http.get<Category[]>(this.baseUrl.concat('/all'), { headers: this.getHeaders() });
   }
 
   create(c: Category): Observable<Category> {
-    return this.http.post<Category>(this.baseUrl, c);
+    return this.http.post<Category>(this.baseUrl, c, { headers: this.getHeaders() });
   }
 
   update(c: Category): Observable<boolean> {
-    return this.http.put<boolean>(this.baseUrl, c);
+    return this.http.put<boolean>(this.baseUrl, c, { headers: this.getHeaders() });
   }
 
   delete(id: number): Observable<boolean> {
     return this.http.delete<boolean>(this.baseUrl, {
-      params: { id }
+      params: { id },
+      headers: this.getHeaders()
     });
   }
 }

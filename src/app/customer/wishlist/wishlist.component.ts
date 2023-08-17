@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Wishlist } from 'src/app/interfaces/wishlist';
 import { WishlistDetail } from 'src/app/interfaces/wishlist-detail';
+import { CustomerService } from 'src/app/services/customer.service';
 import { UtilService } from 'src/app/services/util.service';
-import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -15,7 +15,7 @@ export class WishlistComponent {
   wishlists: WishlistDetail[] = [];
 
   constructor(
-    private wishlistService: WishlistService,
+    private customerService: CustomerService,
     private router: Router,
     private util: UtilService
   ) { }
@@ -25,7 +25,7 @@ export class WishlistComponent {
   }
 
   getWishlists() {
-    this.wishlistService.getWishlists().subscribe((res) => {
+    this.customerService.getWishlists().subscribe((res) => {
       this.wishlists = res;
     });
   }
@@ -39,7 +39,7 @@ export class WishlistComponent {
       customerId: w.customerId,
       productId: w.productId
     }
-    this.wishlistService.removeFromWishlist(ww).subscribe(res => {
+    this.customerService.removeFromWishlist(ww).subscribe(res => {
       this.util.toastify(res, "Removed from wishlist");
       this.getWishlists();
     });

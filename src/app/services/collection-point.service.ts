@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CollectionPoint } from '../interfaces/collection-point';
 import { Observable } from 'rxjs';
@@ -13,12 +13,18 @@ export class CollectionPointService {
 
   constructor(private http: HttpClient) { }
 
+  getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("admin-jwt")
+    })
+  }
+
   create(cp: CollectionPoint): Observable<CollectionPoint> {
-    return this.http.post<CollectionPoint>(this.baseUrl, cp);
+    return this.http.post<CollectionPoint>(this.baseUrl, cp, { headers: this.getHeaders() });
   }
 
   readAll(): Observable<CollectionPoint[]> {
-    return this.http.get<CollectionPoint[]>(this.baseUrl);
+    return this.http.get<CollectionPoint[]>(this.baseUrl, { headers: this.getHeaders() });
   }
 
   readByDistrict(district: string): Observable<CollectionPoint[]> {
@@ -28,12 +34,13 @@ export class CollectionPointService {
   }
 
   update(cp: CollectionPoint): Observable<CollectionPoint> {
-    return this.http.put<CollectionPoint>(this.baseUrl, cp);
+    return this.http.put<CollectionPoint>(this.baseUrl, cp, { headers: this.getHeaders() });
   }
 
   delete(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(this.baseUrl, {
-      params: { id }
+      params: { id },
+      headers: this.getHeaders()
     });
   }
 }

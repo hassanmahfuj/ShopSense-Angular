@@ -22,6 +22,12 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
+  getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("admin-jwt")
+    })
+  }
+
   adminLogin(req: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.baseUrl.concat('/login'), req);
   }
@@ -30,74 +36,66 @@ export class AdminService {
     return JSON.parse(localStorage.getItem('admin-token') || '{}');
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem("admin-jwt")
-    })
-  };
-
   getAllProducts(): Observable<Product[]> {
     console.log(33);
-    return this.http.get<Product[]>(this.baseUrl.concat('/products'), this.httpOptions);
+    return this.http.get<Product[]>(this.baseUrl.concat('/products'), { headers: this.getHeaders() });
   }
 
   updateProduct(p: Product): Observable<Product> {
-    return this.http.put<Product>(this.baseUrl.concat('/product'), p);
+    return this.http.put<Product>(this.baseUrl.concat('/product'), p, { headers: this.getHeaders() });
   }
 
   getAllSellers(): Observable<Seller[]> {
-    return this.http.get<Seller[]>(this.baseUrl.concat('/sellers'));
+    return this.http.get<Seller[]>(this.baseUrl.concat('/sellers'), { headers: this.getHeaders() });
   }
 
   updateSeller(a: Seller): Observable<Seller> {
-    return this.http.put<Seller>(this.baseUrl.concat('/seller'), a);
+    return this.http.put<Seller>(this.baseUrl.concat('/seller'), a, { headers: this.getHeaders() });
   }
 
   getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseUrl.concat('/customers'));
+    return this.http.get<Customer[]>(this.baseUrl.concat('/customers'), { headers: this.getHeaders() });
   }
 
   updateCustomer(a: Customer): Observable<Customer> {
-    return this.http.put<Customer>(this.baseUrl.concat('/customer'), a);
+    return this.http.put<Customer>(this.baseUrl.concat('/customer'), a, { headers: this.getHeaders() });
   }
 
   getWithdrawals(): Observable<WithdrawalAdmin[]> {
-    return this.http.get<WithdrawalAdmin[]>(this.baseUrl.concat('/withdrawals'));
+    return this.http.get<WithdrawalAdmin[]>(this.baseUrl.concat('/withdrawals'), { headers: this.getHeaders() });
   }
 
   updateWithdraw(wa: WithdrawalAdmin): Observable<boolean> {
-    return this.http.post<boolean>(this.baseUrl.concat('/withdraw'), wa);
+    return this.http.post<boolean>(this.baseUrl.concat('/withdraw'), wa, { headers: this.getHeaders() });
   }
 
   // get stat
   getStat(): Observable<AdminStat> {
-    return this.http.get<AdminStat>(this.baseUrl.concat('/stat'));
+    return this.http.get<AdminStat>(this.baseUrl.concat('/stat'), { headers: this.getHeaders() });
   }
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.baseUrl.concat('/orders'));
+    return this.http.get<Order[]>(this.baseUrl.concat('/orders'), { headers: this.getHeaders() });
   }
 
   getOrder(orderId: number): Observable<Order> {
     return this.http.get<Order>(this.baseUrl.concat('/order'), {
-      params: { "orderid": orderId }
+      params: { "orderid": orderId }, headers: this.getHeaders()
     });
   }
 
   updateOrder(order: OrderDetails): Observable<boolean> {
-    return this.http.put<boolean>(this.baseUrl.concat('/order'), order);
+    return this.http.put<boolean>(this.baseUrl.concat('/order'), order, { headers: this.getHeaders() });
   }
 
   getShippedOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.baseUrl.concat('/orders/shipped'));
+    return this.http.get<Order[]>(this.baseUrl.concat('/orders/shipped'), { headers: this.getHeaders() });
   }
 
   getSalesReport(startDate: string, endDate: string): Observable<ReportSales[]> {
     return this.http.get<ReportSales[]>(this.baseUrl.concat('/report/sales'), {
-      params: {
-        startDate,
-        endDate
-      }
+      params: { startDate, endDate },
+      headers: this.getHeaders()
     });
   }
 }
