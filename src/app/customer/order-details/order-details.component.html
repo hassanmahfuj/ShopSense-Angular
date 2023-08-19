@@ -31,7 +31,12 @@
                                 <i class='bx bxs-circle me-1'></i>{{p.status}}
                             </div>
                         </td>
-                        <td><button (click)="trackOrder(p)" type="button" class="btn btn-primary btn-sm radius-30 px-4">Track</button></td>
+                        <td>
+                            <button (click)="trackOrder(p)" type="button"
+                                class="btn btn-primary btn-sm radius-30 px-4">Track</button>
+                            <button *ngIf="refundEligible && p.status == 'Delivered'" (click)="setRefundDetails(p.id, p.sellerId)" data-bs-toggle="modal" data-bs-target="#refundModal" type="button"
+                                class="btn btn-warning btn-sm radius-30 px-4">Refund</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -44,10 +49,10 @@
             <div class="card-body">
                 <h5>Shipping Address</h5>
                 <hr>
-                <p>Address: {{order.shippingStreet}}</p>
-                <p>Post Code: {{order.shippingPostCode}}</p>
-                <p>District: {{order.shippingCity}}</p>
-                <p>Division: {{order.shippingState}}</p>
+                <p><strong>Address:</strong> {{order.shippingStreet}}</p>
+                <p><strong>Post Code:</strong> {{order.shippingPostCode}}</p>
+                <p><strong>District:</strong> {{order.shippingCity}}</p>
+                <p><strong>Division:</strong> {{order.shippingState}}</p>
             </div>
         </div>
     </div>
@@ -86,6 +91,44 @@
                 </table>
                 <hr>
                 <p>Paid by {{order.paymentMethod}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Refund Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control rounded-3" id="bank_name" placeholder="Bank Name"
+                        [(ngModel)]="refundDetails.bankName" name="bank_name">
+                    <label for="code">Bank Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control rounded-3" id="bank_number" placeholder="Bank Number"
+                        [(ngModel)]="refundDetails.bankNumber" name="value">
+                    <label for="bank_number">Bank Number</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="reason" [(ngModel)]="refundDetails.reason" name="reason">
+                        <option>Product damaged</option>
+                        <option>Wrong product</option>
+                        <option>I changed my mind</option>
+                    </select>
+                    <label for="floatingSelect">Refund reason</label>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="onRefund()"
+                    data-bs-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>

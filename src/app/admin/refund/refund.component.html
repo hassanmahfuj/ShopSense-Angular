@@ -1,0 +1,49 @@
+<div class="page-content">
+    <h3>Refund History</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Refund ID</th>
+                            <th>Return Reason</th>
+                            <th>Bank Name</th>
+                            <th>Bank Number</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of refundDetails; let i = index">
+                            <td>
+                                <h6 class="mb-0 font-14">{{p.refundId}}</h6>
+                            </td>
+                            <td>{{p.reason}}</td>
+                            <td>{{p.bankName}}</td>
+                            <td>{{p.bankNumber}}</td>
+                            <td>
+                                <div [class]="p.status=='Declined' ? 'text-danger bg-light-danger' : p.status=='Refunded' ? 'text-success bg-light-success' : 'text-primary bg-light-primary'"
+                                    class="badge rounded-pill p-2 text-uppercase px-3">
+                                    <i class='bx bxs-circle me-1'></i>{{p.status}}
+                                </div>
+                            </td>
+                            <td>
+                                <select #_status class="form-select" name="actions" id="actions"
+                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status == 'Refunded'">
+                                    <option *ngIf="p.status=='Refund Requested'"
+                                        [selected]="p.status=='Refund Requested'" value="Refund Requested">Refund
+                                        Requested</option>
+                                    <option [selected]="p.status=='Declined'" value="Declined">Declined</option>
+                                    <option [selected]="p.status=='Refund Processing'" value="Refund Processing">Refund
+                                        Processing</option>
+                                    <option [selected]="p.status=='Refunded'" value="Refunded">Refunded</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

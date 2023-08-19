@@ -17,6 +17,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersShippedComponent } from './orders-shipped/orders-shipped.component';
 import { CollectionPointsComponent } from './collection-points/collection-points.component';
 import { ReportSalesComponent } from './report-sales/report-sales.component';
+import { RefundComponent } from './refund/refund.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReportSalesComponent } from './report-sales/report-sales.component';
     OrderDetailsComponent,
     OrdersShippedComponent,
     CollectionPointsComponent,
-    ReportSalesComponent
+    ReportSalesComponent,
+    RefundComponent
   ],
   imports: [
     CommonModule,
