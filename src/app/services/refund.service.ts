@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RefundDetails } from '../interfaces/refund-details';
 import { Observable } from 'rxjs';
+import { SellerService } from './seller.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { Observable } from 'rxjs';
 export class RefundService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private sellerService: SellerService
   ) { }
 
   private host: string = 'http://localhost:8080';
@@ -48,6 +50,12 @@ export class RefundService {
   getAllRefund(): Observable<RefundDetails[]> {
     return this.http.get<RefundDetails[]>(this.host.concat('/admin/refund'), {
       headers: this.getAdminHeaders()
+    });
+  }
+
+  getSellerRefund(): Observable<RefundDetails[]> {
+    return this.http.get<RefundDetails[]>(this.host.concat('/seller/refund/' + this.sellerService.getSellerToken().id), {
+      headers: this.getSellerHeaders()
     });
   }
 }

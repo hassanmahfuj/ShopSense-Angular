@@ -34,12 +34,13 @@
                             </td>
                             <td>
                                 <select #_status class="form-select" name="actions" id="actions"
-                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status=='Shipped' || p.status=='Delivered'">
+                                    (change)="onStatusChange(i, _status.value)" [disabled]="p.status=='Shipped' || p.status=='Delivered' || p.status=='Refunded'">
                                     <option [selected]="p.status=='Pending'" value="Pending">Pending</option>
                                     <option [selected]="p.status=='Canceled'" value="Canceled">Canceled</option>
                                     <option [selected]="p.status=='Processing'" value="Processing">Processing</option>
                                     <option [selected]="p.status=='Shipped'" value="Shipped">Shipped</option>
                                     <option *ngIf="p.status=='Delivered'" [selected]="p.status=='Delivered'" value="Delivered">Delivered</option>
+                                    <option *ngIf="p.status=='Refunded'" [selected]="p.status=='Refunded'" value="Refunded">Refunded</option>
                                 </select>
                             </td>
                         </tr>
