@@ -1,0 +1,60 @@
+<div class="page-content">
+    <div class="d-flex align-items-end gap-3 mb-3">
+        <h3 class="m-0">Jasper Reports</h3>
+        <div class="ms-auto">
+            <label>ID</label>
+            <input class="form-control" type="text" name="findById" [(ngModel)]="findById">
+        </div>
+        <div>
+            <label>From</label>
+            <input class="form-control" type="date" name="startDate" [(ngModel)]="startDate">
+        </div>
+        <div>
+            <label>To</label>
+            <input class="form-control" type="date" name="endDate" [(ngModel)]="endDate">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5>Admin Reports</h5>
+            <div class="row g-3">
+                <div class="col-4">
+                    <button (click)="onVendorSales()" class="btn btn-primary w-100" style="height: 80px;" type="button">Sales by Seller</button>
+                </div>
+                <div class="col-4">
+                    <button (click)="onAdminProfit()" class="btn btn-primary w-100" style="height: 80px;" type="button">Admin Profits</button>
+                </div>
+            </div>
+            <h5 class="mt-4">Seller Reports</h5>
+            <div class="row g-3">
+                <div class="col-4">
+                    <button (click)="onSellerReport()" class="btn btn-primary w-100" style="height: 80px;" type="button">All Seller Report</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary w-100" style="height: 80px;" type="button">Seller Sales</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary w-100" style="height: 80px;" type="button">Seller Withdraws</button>
+                </div>
+            </div>
+            <h5 class="mt-4">Customer Reports</h5>
+            <div class="row g-3">
+                <div class="col-4">
+                    <button (click)="onCustomerReport()" class="btn btn-primary w-100" style="height: 80px;" type="button">All Customer Report</button>
+                </div>
+                <div class="col-4">
+                    <button (click)="onCustomerOrders()" class="btn btn-primary w-100" style="height: 80px;" type="button">Customer Report by ID</button>
+                </div>
+            </div>
+            <h5 class="mt-4">Product Reports</h5>
+            <div class="row g-3">
+                <div class="col-4">
+                    <button (click)="onProductDetails()" class="btn btn-primary w-100" style="height: 80px;" type="button">Product Details</button>
+                </div>
+                <div class="col-4">
+                    <button (click)="onFavoriteItem()" class="btn btn-primary w-100" style="height: 80px;" type="button">Favorite Items Rank</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

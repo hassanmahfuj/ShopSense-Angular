@@ -1,3 +1,23 @@
 section {
     margin: 3rem 0;
 }
+
+.mybg1 {
+    background: url("assets/images/bg-themes/7.png");
+}
+
+.mybg2 {
+    background: url("assets/images/bg-themes/5.png");
+}
+
+.menu-title {
+    color: white;
+}
+
+.parent-icon {
+    color: white;
+}
+
+.metismenu li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

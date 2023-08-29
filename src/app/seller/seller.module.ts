@@ -16,6 +16,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { StoreComponent } from './store/store.component';
 import { ReportSalesComponent } from './report-sales/report-sales.component';
 import { RefundComponent } from './refund/refund.component';
+import { ReportComponent } from './report/report.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RefundComponent } from './refund/refund.component';
     WithdrawComponent,
     StoreComponent,
     ReportSalesComponent,
-    RefundComponent
+    RefundComponent,
+    ReportComponent
   ],
   imports: [
     CommonModule,

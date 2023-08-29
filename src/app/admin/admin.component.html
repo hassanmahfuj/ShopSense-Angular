@@ -1,13 +1,13 @@
 <!--sidebar wrapper -->
-<div class="sidebar-wrapper" data-simplebar="true">
-    <div class="sidebar-header">
+<div class="sidebar-wrapper mybg1" data-simplebar="true">
+    <div class="sidebar-header mybg1">
         <div>
             <!-- <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon"> -->
-            <span class="text-danger fs-4 fw-bold">S</span>
+            <!-- <span class="text-danger fs-4 fw-bold">S</span> -->
         </div>
         <div>
             <a routerLink="">
-                <h4 class="logo-text">ShopSense</h4>
+                <h4 class="logo-text text-white">ShopSense</h4>
             </a>
         </div>
     </div>
@@ -96,6 +96,13 @@
         </li>
         <li class="menu-label">Report</li>
         <li>
+            <a routerLink="report">
+                <div class="parent-icon"><i class='bx bx-pie-chart-alt-2'></i>
+                </div>
+                <div class="menu-title">Jasper Reports</div>
+            </a>
+        </li>
+        <li>
             <a routerLink="report/sales">
                 <div class="parent-icon"><i class='bx bx-pie-chart-alt-2'></i>
                 </div>
@@ -116,7 +123,7 @@
 <!--end sidebar wrapper -->
 <!--start header -->
 <header>
-    <div class="topbar d-flex align-items-center">
+    <div class="topbar d-flex align-items-center mybg1">
         <nav class="navbar navbar-expand gap-3">
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
             </div>
@@ -184,8 +191,8 @@
                 <a class="d-flex align-items-center gap-3" routerLink=".">
                     <img src="assets/images/avatars/avatar-8.png" class="user-img" alt="user avatar">
                     <div class="user-info">
-                        <p class="user-name mb-0">{{adminName}}</p>
-                        <p class="designattion mb-0">ADMIN</p>
+                        <p class="user-name mb-0 text-white">{{adminName}}</p>
+                        <p class="designattion mb-0 text-white">ADMIN</p>
                     </div>
                 </a>
             </div>
